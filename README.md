@@ -4,7 +4,6 @@
 ### *Break free from Instagram without losing your saved knowledge, reels, and memories.*
 
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Privacy: 100% Local](https://img.shields.io/badge/Privacy-100%25%20Offline%20%26%20Local-purple.svg)](#-privacy--security-guarantee)
 [![Platform: Windows | Mac | Linux](https://img.shields.io/badge/Platform-Windows%20%7C%20Mac%20%7C%20Linux-orange.svg)](#-quick-start-in-3-steps)
 
@@ -136,10 +135,6 @@ PORT=8765
 - **Optimization**: `IntersectionObserver` iframe pool manager restricting active memory frames to ensure buttery-smooth scrolling.
 
 ---
-
-## 📜 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
 
 <div align="center">
   <sub>Built with ❤️ for digital wellness and preserving knowledge.</sub>
