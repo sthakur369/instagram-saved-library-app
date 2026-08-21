@@ -1,0 +1,2003 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Saved Archive — Instagram Offline Library</title>
+  <link rel="preconnect" href="https://www.instagram.com">
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --surface-2: #f8fafc;
+      --surface-3: #eef2f7;
+      --border: #e2e8f0;
+      --border-focus: #94a3b8;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --text-faint: #94a3b8;
+      --accent: #4f46e5;
+      --accent-hover: #4338ca;
+      --accent-soft: #eef2ff;
+      --accent-soft-border: #e0e7ff;
+      --ig-gradient: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      --ig-color: #e1306c;
+      --card-shadow: 0 3px 14px -2px rgba(15, 23, 42, 0.06), 0 1px 4px -1px rgba(15, 23, 42, 0.03);
+      --card-shadow-hover: 0 14px 30px -4px rgba(15, 23, 42, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.05);
+      --modal-shadow: 0 25px 60px -12px rgba(15, 23, 42, 0.45);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-full: 9999px;
+      --media-bg: #eef2f7;
+    }
+
+    [data-theme="dark"] {
+      --bg: #090d16;
+      --surface: #111827;
+      --surface-2: #192231;
+      --surface-3: #222d3f;
+      --border: #263346;
+      --border-focus: #4b5e78;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-faint: #64748b;
+      --accent: #6366f1;
+      --accent-hover: #818cf8;
+      --accent-soft: #1e1e38;
+      --accent-soft-border: #312e81;
+      --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+      --card-shadow-hover: 0 14px 34px -4px rgba(0, 0, 0, 0.6);
+      --modal-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.85);
+      --media-bg: #151c28;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, select { font: inherit; color: inherit; }
+    button { cursor: pointer; border: none; background: none; }
+    a { color: inherit; text-decoration: none; }
+
+    .app-shell {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px 28px 80px;
+    }
+
+    /* Top Navbar */
+    .top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--ig-gradient);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 4px 12px rgba(225, 48, 108, 0.3);
+    }
+    .brand-text h1 {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-tag {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 2px 7px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--accent-soft-border);
+    }
+    .brand-text p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .btn-icon:hover {
+      background: var(--surface-2);
+      color: var(--text);
+      border-color: var(--border-focus);
+    }
+    #themeIcon {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-icon:active #themeIcon {
+      transform: rotate(180deg) scale(0.9);
+    }
+    .btn-refresh {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 13px;
+      height: 36px;
+      border-radius: 9px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .btn-refresh:hover {
+      background: var(--surface-2);
+      color: var(--text);
+      border-color: var(--border-focus);
+    }
+    .btn-refresh.loading svg {
+      animation: spin 0.8s linear infinite;
+    }
+
+    /* Stats Banner */
+    .hero-banner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px 26px;
+      margin-bottom: 24px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .hero-info h2 {
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+    .hero-info p {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 580px;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .stat-pill {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 9px 14px;
+      min-width: 105px;
+      text-align: left;
+    }
+    .stat-pill b {
+      display: block;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.1;
+    }
+    .stat-pill span {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+    }
+
+    /* Controls Bar: Tabs, Search & Filters */
+    .controls-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .tabs-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .segmented-tabs {
+      display: inline-flex;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 4px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      gap: 3px;
+    }
+    .tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .tab-btn:hover {
+      color: var(--text);
+      background: var(--surface-2);
+    }
+    .tab-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.28);
+    }
+    .tab-count {
+      font-size: 11px;
+      padding: 1px 7px;
+      border-radius: var(--radius-full);
+      background: rgba(0, 0, 0, 0.07);
+      font-weight: 600;
+    }
+    .tab-btn.active .tab-count {
+      background: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+    }
+
+    /* Search & Filter Bar */
+    .search-filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .search-box {
+      position: relative;
+      flex: 1;
+      max-width: 460px;
+      min-width: 240px;
+    }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-faint);
+      pointer-events: none;
+    }
+    .search-input {
+      width: 100%;
+      height: 40px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0 36px 0 38px;
+      font-size: 13.5px;
+      color: var(--text);
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+    .search-clear {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--surface-3);
+      color: var(--text-muted);
+      font-size: 11px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .search-input:not(:placeholder-shown) + .search-clear {
+      display: flex;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .chip {
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      font-size: 12.5px;
+      font-weight: 500;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    .chip:hover {
+      background: var(--surface-2);
+      color: var(--text);
+    }
+    .chip.active {
+      background: var(--surface-3);
+      color: var(--text);
+      border-color: var(--border-focus);
+      font-weight: 600;
+    }
+    .sort-select {
+      height: 38px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0 12px;
+      font-size: 12.5px;
+      color: var(--text);
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* Active Collection Header Breadcrumb */
+    .collection-header-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      box-shadow: var(--card-shadow);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .collection-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .btn-back:hover {
+      background: var(--surface-3);
+      border-color: var(--border-focus);
+    }
+    .collection-header-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .collection-header-count {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Grid Layouts */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 20px;
+    }
+
+    /* Post Card */
+    .post-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .post-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--card-shadow-hover);
+      border-color: var(--border-focus);
+    }
+
+    /* Post Card Header */
+    .card-header {
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .creator-meta {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+      flex: 1;
+    }
+    .creator-link {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+      flex: 1;
+      text-decoration: none;
+    }
+    .creator-link:hover .creator-handle {
+      color: var(--ig-color);
+      text-decoration: underline;
+    }
+    .creator-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--surface-3);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+      text-transform: uppercase;
+    }
+    .creator-names {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .creator-handle {
+      font-size: 13px;
+      font-weight: 650;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .creator-owner {
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 650;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .badge-reel {
+      background: #fdf2f8;
+      border-color: #fce7f3;
+      color: #db2777;
+    }
+    [data-theme="dark"] .badge-reel {
+      background: #381528;
+      border-color: #501d39;
+      color: #f472b6;
+    }
+    .badge-video {
+      background: #eff6ff;
+      border-color: #dbeafe;
+      color: #2563eb;
+    }
+    [data-theme="dark"] .badge-video {
+      background: #172554;
+      border-color: #1e3a8a;
+      color: #60a5fa;
+    }
+
+    /* Media Container — compact Instagram embed */
+    .media-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      min-height: 280px;
+      background: var(--media-bg);
+      overflow: hidden;
+    }
+    .media-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      z-index: 1;
+      background: transparent;
+      pointer-events: auto;
+    }
+    .media-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--text-muted);
+      font-size: 12.5px;
+      background: var(--media-bg);
+      z-index: 0;
+      transition: opacity 0.25s ease;
+    }
+    .media-icon-watermark {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--surface-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-faint);
+    }
+    .shimmer-spinner {
+      width: 22px;
+      height: 22px;
+      border: 2.5px solid var(--border);
+      border-top-color: var(--ig-color);
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+    }
+
+    /* Now-playing pulse badge shown only on reel/video cards */
+    .now-playing-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      z-index: 10;
+      display: none;
+      align-items: center;
+      gap: 5px;
+      background: rgba(15,23,42,0.72);
+      backdrop-filter: blur(4px);
+      border-radius: 20px;
+      padding: 4px 9px 4px 6px;
+      pointer-events: none;
+    }
+    .now-playing-badge.visible { display: flex; }
+    .now-playing-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #ef4444;
+      animation: playPulse 1.1s ease-in-out infinite;
+    }
+    .now-playing-badge span {
+      font-size: 10.5px;
+      font-weight: 650;
+      color: #fff;
+      letter-spacing: 0.03em;
+    }
+    @keyframes playPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.72); }
+    }
+
+    /* Post Card Body */
+    .card-body {
+      padding: 12px 14px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      background: var(--surface);
+    }
+    .card-caption {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.45;
+      word-break: break-word;
+    }
+    .caption-text {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      white-space: pre-line;
+    }
+    .caption-text.expanded {
+      display: block;
+      -webkit-line-clamp: unset;
+    }
+    .btn-read-more {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 4px;
+      padding: 0;
+      display: inline-block;
+    }
+    .btn-read-more:hover {
+      text-decoration: underline;
+    }
+
+    .card-meta-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11.5px;
+      color: var(--text-faint);
+    }
+
+    /* Card Footer: Action Buttons */
+    .card-footer {
+      padding: 10px 14px;
+      background: var(--surface-2);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .btn-quickview {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    .btn-quickview:hover {
+      background: var(--surface-3);
+      color: var(--text);
+      border-color: var(--border-focus);
+    }
+    .btn-copy {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    .btn-copy:hover {
+      background: var(--surface-3);
+      color: var(--text);
+    }
+
+    /* Aesthetic Open on Instagram Button */
+    .btn-open-insta {
+      background: var(--surface);
+      color: #d82d7e;
+      border: 1px solid rgba(225, 48, 108, 0.35);
+      border-radius: var(--radius-sm);
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 650;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 1px 3px rgba(225, 48, 108, 0.08);
+      margin-left: auto;
+    }
+    .btn-open-insta:hover {
+      background: var(--ig-gradient);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(225, 48, 108, 0.3);
+      transform: translateY(-1px);
+    }
+
+    /* Collection Folder Cards */
+    .collection-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+    .collection-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--card-shadow-hover);
+      border-color: var(--accent);
+    }
+    .collection-cover {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface-3) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .collection-icon-large {
+      font-size: 42px;
+      opacity: 0.85;
+      transition: transform 0.2s ease;
+    }
+    .collection-card:hover .collection-icon-large {
+      transform: scale(1.1);
+    }
+    .collection-count-pill {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(6px);
+      color: #ffffff;
+      font-size: 11.5px;
+      font-weight: 650;
+      padding: 3px 9px;
+      border-radius: var(--radius-full);
+    }
+    .collection-info {
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .collection-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .collection-name {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .collection-badge-count {
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--accent-soft-border);
+    }
+    .collection-subtitle {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+    .collection-footer {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      color: var(--accent);
+      font-size: 12.5px;
+      font-weight: 650;
+    }
+    .collection-card:hover .collection-footer {
+      text-decoration: underline;
+    }
+
+    /* Music Tab */
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 16px;
+    }
+    .music-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .music-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--card-shadow-hover);
+    }
+    .music-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+    }
+    .music-details {
+      flex: 1;
+      min-width: 0;
+    }
+    .music-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .music-artist {
+      font-size: 13px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
+    }
+    .music-links {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .music-link-btn {
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    .music-link-btn:hover {
+      background: var(--surface-3);
+      color: var(--text);
+      border-color: var(--border-focus);
+    }
+
+    /* Modal / Lightbox Player */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeIn 0.2s ease;
+    }
+    .modal-backdrop.active {
+      display: flex;
+    }
+    .modal-dialog {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--modal-shadow);
+      max-width: 1000px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+      animation: scaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--surface-3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    .modal-close-btn:hover {
+      background: #ef4444;
+      color: #ffffff;
+      border-color: #ef4444;
+    }
+    .modal-body {
+      display: grid;
+      grid-template-columns: minmax(360px, 500px) 1fr;
+      max-height: 88vh;
+      overflow: hidden;
+    }
+    .modal-player-pane {
+      background: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 560px;
+    }
+    .modal-iframe-wrapper {
+      width: 100%;
+      height: 100%;
+      min-height: 560px;
+      position: relative;
+    }
+    .modal-iframe-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 560px;
+      border: 0;
+      display: block;
+    }
+    .modal-info-pane {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px;
+      background: var(--surface);
+      overflow-y: auto;
+      max-height: 88vh;
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .modal-author:hover .creator-handle {
+      color: var(--ig-color);
+      text-decoration: underline;
+    }
+    .modal-caption-wrap {
+      padding: 16px 0;
+      flex: 1;
+      overflow-y: auto;
+    }
+    .modal-caption-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text);
+      white-space: pre-line;
+      word-break: break-word;
+    }
+    .modal-actions-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1e293b;
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Empty, Loading & Error States */
+    .state-box {
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-lg);
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--text-muted);
+      margin: 20px 0;
+    }
+    .state-box h3 {
+      font-size: 18px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .state-box p {
+      font-size: 13.5px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .load-more-wrap {
+      text-align: center;
+      margin: 36px 0;
+    }
+    .btn-load-more {
+      padding: 11px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text);
+      box-shadow: var(--card-shadow);
+    }
+    .btn-load-more:hover {
+      background: var(--surface-2);
+      border-color: var(--border-focus);
+      transform: translateY(-1px);
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes scaleUp { from { transform: scale(0.96); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    /* Responsive Design */
+    @media (max-width: 860px) {
+      .app-shell { padding: 16px 14px 60px; }
+      .hero-banner { padding: 18px; }
+      .modal-body { grid-template-columns: 1fr; max-height: 90vh; }
+      .modal-player-pane { min-height: 420px; }
+      .posts-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+      .collections-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+    }
+    @media (max-width: 580px) {
+      .top-nav { flex-direction: column; align-items: flex-start; }
+      .nav-actions { width: 100%; justify-content: flex-end; }
+      .hero-stats { width: 100%; justify-content: space-between; }
+      .stat-pill { min-width: 0; flex: 1; padding: 8px 10px; }
+      .search-box { max-width: 100%; }
+      .posts-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Top Navigation -->
+    <header class="top-nav">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>Saved Archive <span class="brand-tag">Private Vault</span></h1>
+          <p>Local offline browser for your exported Instagram saved posts</p>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <button class="btn-refresh" id="btnRefresh" title="Refresh library cache">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <polyline points="1 20 1 14 7 14"></polyline>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+          </svg>
+          <span>Refresh</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero / Stats Banner -->
+    <section class="hero-banner">
+      <div class="hero-info">
+        <h2>Your Personal Visual Collection</h2>
+        <p>Browse, search, and watch your saved Instagram reels and posts without needing an active Instagram session.</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-pill">
+          <b id="statPosts">—</b>
+          <span>Saved Posts</span>
+        </div>
+        <div class="stat-pill">
+          <b id="statCollections">—</b>
+          <span>Collections</span>
+        </div>
+        <div class="stat-pill">
+          <b id="statMusic">—</b>
+          <span>Audio Tracks</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Container -->
+    <main id="appContent">
+      <div class="state-box">
+        <div class="shimmer-spinner" style="margin: 0 auto 16px;"></div>
+        <h3>Loading your saved archive...</h3>
+        <p>Parsing your saved collections, posts, and music.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Interactive Lightbox / Modal Player -->
+  <div id="modalContainer" class="modal-backdrop" onclick="closeModal(event)">
+    <div class="modal-dialog" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeModal()" title="Close viewer (Esc)">✕</button>
+      <div class="modal-body">
+        <div class="modal-player-pane">
+          <div class="modal-iframe-wrapper">
+            <iframe id="modalIframe" scrolling="no" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share; fullscreen" allowfullscreen="true"></iframe>
+          </div>
+        </div>
+        <div class="modal-info-pane">
+          <div>
+            <div class="modal-header">
+              <a id="modalAuthorLink" class="modal-author" target="_blank" rel="noopener noreferrer">
+                <div id="modalAuthorAvatar" class="creator-avatar"></div>
+                <div class="creator-names">
+                  <span id="modalAuthorHandle" class="creator-handle"></span>
+                  <span id="modalAuthorOwner" class="creator-owner"></span>
+                </div>
+              </a>
+              <div style="display: flex; gap: 6px; align-items: center;">
+                <span id="modalBadgeKind" class="badge"></span>
+              </div>
+            </div>
+            <div class="modal-caption-wrap">
+              <div id="modalCaption" class="modal-caption-text"></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size: 11.5px; color: var(--text-faint); margin-bottom: 12px;" id="modalSavedDate"></div>
+            <div class="modal-actions-bar">
+              <button class="btn-action btn-quickview" id="modalBtnPrev" onclick="navigateModal(-1)" title="Previous (Left Arrow)">
+                ← Previous
+              </button>
+              <button class="btn-action btn-quickview" id="modalBtnNext" onclick="navigateModal(1)" title="Next (Right Arrow)">
+                Next →
+              </button>
+              <button class="btn-action btn-copy" id="modalBtnCopy" onclick="copyModalLink(this)">
+                Copy Link
+              </button>
+              <a class="btn-open-insta" id="modalBtnOpen" target="_blank" rel="noopener noreferrer">
+                <span>Open on Instagram</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    <span id="toastMsg">Link copied to clipboard!</span>
+  </div>
+
+  <script>
+    // State management
+    let library = null;
+    let currentTab = 'collections'; // 'collections' | 'posts' | 'music'
+    let currentFilter = 'all';      // 'all' | 'Reel' | 'Post' | 'Video'
+    let currentSort = 'newest';     // 'newest' | 'oldest' | 'author'
+    let searchQuery = '';
+    let visibleCount = 48;
+    let activeCollection = null;
+    let modalPostIndex = -1;
+    let currentFilteredPosts = [];
+
+    // Iframe memory virtualization
+    const activeFrames = new Map();
+    const MAX_ACTIVE_FRAMES = 36;
+    let intersectionObserver = null;
+
+    // Helper functions
+    const esc = s => String(s || '').replace(/[&<>'"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[c]));
+    const plural = (n, word) => `${Number(n || 0).toLocaleString()} ${word}${n === 1 ? '' : 's'}`;
+    const cleanUrl = u => (u || '').trim();
+
+    function getShortcode(url) {
+      const m = url.match(/instagram\.com\/(?:p|reel|tv)\/([^/?#]+)/i);
+      return m ? m[1] : '';
+    }
+
+    function getEmbedUrl(url) {
+      const m = url.match(/instagram\.com\/(p|reel|tv)\/([^/?#]+)/i);
+      if (!m) return url;
+      const kind = m[1].toLowerCase();
+      const code = m[2];
+      return `https://www.instagram.com/${kind}/${code}/embed/`;
+    }
+
+    function linkifyText(text) {
+      if (!text) return '';
+      let safe = esc(text);
+      safe = safe.replace(/@([a-zA-Z0-9._]+)/g, '<a href="https://www.instagram.com/$1/" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:600;">@$1</a>');
+      safe = safe.replace(/#([a-zA-Z0-9_\u0900-\u097F]+)/g, '<span style="color:var(--ig-color);font-weight:500;">#$1</span>');
+      return safe;
+    }
+
+    // Theme initialization (defaults to light)
+    function initTheme() {
+      const saved = localStorage.getItem('insta_archive_theme') || 'light';
+      document.documentElement.setAttribute('data-theme', saved);
+    }
+
+    // Toast helper
+    let toastTimeout = null;
+    function showToast(msg = 'Copied to clipboard! ✓') {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => toast.classList.remove('show'), 2600);
+    }
+
+    function copyLink(url, btn) {
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('Post URL copied to clipboard! ✓');
+        if (btn) {
+          const original = btn.innerHTML;
+          btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> <span style="color:#10b981">Copied</span>';
+          setTimeout(() => btn.innerHTML = original, 1800);
+        }
+      });
+    }
+
+    function copyModalLink(btn) {
+      if (modalPostIndex >= 0 && modalPostIndex < currentFilteredPosts.length) {
+        copyLink(currentFilteredPosts[modalPostIndex].url, btn);
+      }
+    }
+
+    // Fetch Library from Python Backend (or client-side files)
+    async function loadLibrary(refresh = false) {
+      const refreshBtn = document.getElementById('btnRefresh');
+      if (refresh) refreshBtn.classList.add('loading');
+      try {
+        const res = await fetch('/api/library' + (refresh ? '?refresh=1' : ''));
+        library = await res.json();
+        renderApp();
+      } catch (err) {
+        document.getElementById('appContent').innerHTML = `
+          <div class="state-box" style="border-color:#fca5a5;">
+            <h3 style="color:#ef4444;">Could not connect to Python background server</h3>
+            <p style="margin-bottom:16px;">If running locally, make sure <b>run.bat</b> or <b>python app.py</b> is running.</p>
+            <div style="margin-top:18px;padding-top:16px;border-top:1px dashed var(--border);">
+              <p style="font-size:13px;color:var(--text);font-weight:600;margin-bottom:8px;">Running without Python (Direct Browser Mode):</p>
+              <p style="font-size:12.5px;color:var(--text-muted);margin-bottom:12px;">Select or drop your exported <code>saved_posts.html</code> and <code>saved_collections.html</code> here:</p>
+              <input type="file" id="clientFileInput" multiple accept=".html" style="font-size:13px;padding:8px 12px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;">
+            </div>
+          </div>`;
+        setupClientSideUpload();
+      } finally {
+        refreshBtn.classList.remove('loading');
+      }
+    }
+
+    // Client side parser for Vercel / zero-backend usage
+    function setupClientSideUpload() {
+      const input = document.getElementById('clientFileInput');
+      if (!input) return;
+      input.onchange = async (e) => {
+        const files = Array.from(e.target.files);
+        if (!files.length) return;
+        document.getElementById('appContent').innerHTML = `<div class="state-box"><div class="shimmer-spinner" style="margin:0 auto 16px;"></div><h3>Reading your export files...</h3></div>`;
+        
+        let postsRaw = '', collRaw = '', musicRaw = '';
+        for (const file of files) {
+          const text = await file.text();
+          if (file.name.includes('posts')) postsRaw = text;
+          else if (file.name.includes('collections')) collRaw = text;
+          else if (file.name.includes('music')) musicRaw = text;
+        }
+
+        library = parseClientExport(postsRaw, collRaw, musicRaw);
+        renderApp();
+      };
+    }
+
+    function parseClientExport(postsRaw, collRaw, musicRaw) {
+      const postUrlRe = /URL\s*<div>\s*<a[^>]+href="(https?:\/\/(?:www\.)?instagram\.com\/(?:p|reel|tv)\/[^"?#]+)/gi;
+      const cleanTag = s => (s || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+      
+      const posts = [];
+      const seenUrls = new Set();
+
+      const parseSegment = (raw) => {
+        const matches = [...raw.matchAll(postUrlRe)];
+        for (let i = 0; i < matches.length; i++) {
+          const match = matches[i];
+          const startIdx = match.index;
+          const endIdx = i + 1 < matches.length ? matches[i + 1].index : raw.length;
+          const block = raw.slice(startIdx, endIdx);
+          const url = match[1].trim();
+          if (seenUrls.has(url.replace(/\/$/, ''))) continue;
+          seenUrls.add(url.replace(/\/$/, ''));
+
+          const capM = block.match(/Caption<\/td>\s*<td[^>]*>(.*?)<\/td>/i);
+          const userM = block.match(/Username<\/td>\s*<td[^>]*>(.*?)<\/td>/i);
+          const ownM = block.match(/Name<\/td>\s*<td[^>]*>(.*?)<\/td>/i);
+          const dateM = block.match(/class="_3-94 _a6-o">(.*?)<\/div>/i);
+          
+          posts.push({
+            url,
+            kind: url.includes('/reel/') ? 'Reel' : url.includes('/tv/') ? 'Video' : 'Post',
+            caption: cleanTag(capM ? capM[1] : ''),
+            username: cleanTag(userM ? userM[1] : '').replace(/^@/, ''),
+            owner: cleanTag(ownM ? ownM[1] : ''),
+            savedAt: cleanTag(dateM ? dateM[1] : ''),
+          });
+        }
+      };
+
+      if (postsRaw) parseSegment(postsRaw);
+      if (collRaw) parseSegment(collRaw);
+
+      const collections = [];
+      if (collRaw) {
+        const colStartRe = /Name<\/td>\s*<td[^>]*>([^<]+)<\/td>\s*<\/tr>\s*<tr>\s*<td[^>]*>Type<\/td>/gi;
+        const cMatches = [...collRaw.matchAll(colStartRe)];
+        for (let i = 0; i < cMatches.length; i++) {
+          const startIdx = cMatches[i].index;
+          const endIdx = i + 1 < cMatches.length ? cMatches[i + 1].index : collRaw.length;
+          const seg = collRaw.slice(startIdx, endIdx);
+          const urls = [...new Set([...seg.matchAll(postUrlRe)].map(m => m[1].trim()))];
+          collections.push({
+            name: cleanTag(cMatches[i][1]),
+            urls,
+            count: urls.length,
+            covers: urls.slice(0, 4)
+          });
+        }
+      }
+
+      const music = [];
+      if (musicRaw) {
+        const rows = [...musicRaw.matchAll(/<td[^>]*>(Title|Artist)<\/td>\s*<td[^>]*>(.*?)<\/td>/gi)];
+        let cur = {};
+        for (const [_, label, val] of rows) {
+          const key = label.toLowerCase();
+          const cleanVal = cleanTag(val);
+          if (key === 'title' && cur.title) {
+            music.push(cur);
+            cur = {};
+          }
+          cur[key] = cleanVal;
+        }
+        if (cur.title) music.push(cur);
+      }
+
+      return {
+        ready: true,
+        stats: { posts: posts.length, collections: collections.length, music: music.length },
+        posts,
+        collections,
+        music
+      };
+    }
+
+    // Render App Framework
+    function renderApp() {
+      if (!library || !library.ready) {
+        document.getElementById('appContent').innerHTML = `
+          <div class="state-box" style="border-color:#f59e0b;">
+            <h3 style="color:#d97706;">Configuration Setup Needed</h3>
+            <p style="margin-bottom:14px;">${esc(library?.message || 'Instagram export files were not found.')}</p>
+            <p style="font-size:12.5px;color:var(--text-muted);">Please check <b>config.env</b> in the instagram_saved_library directory and click Refresh.</p>
+          </div>`;
+        return;
+      }
+
+      // Update statistics
+      document.getElementById('statPosts').textContent = Number(library.stats.posts || 0).toLocaleString();
+      document.getElementById('statCollections').textContent = Number(library.stats.collections || 0).toLocaleString();
+      document.getElementById('statMusic').textContent = Number(library.stats.music || 0).toLocaleString();
+
+      const container = document.getElementById('appContent');
+      container.innerHTML = `
+        <div class="controls-panel">
+          <div class="tabs-row">
+            <div class="segmented-tabs">
+              <button class="tab-btn ${currentTab === 'collections' ? 'active' : ''}" data-tab="collections">
+                <span>📁 Collections</span>
+                <span class="tab-count">${library.stats.collections}</span>
+              </button>
+              <button class="tab-btn ${currentTab === 'posts' ? 'active' : ''}" data-tab="posts">
+                <span>📑 All Saved</span>
+                <span class="tab-count">${Number(library.stats.posts).toLocaleString()}</span>
+              </button>
+              <button class="tab-btn ${currentTab === 'music' ? 'active' : ''}" data-tab="music">
+                <span>🎵 Music</span>
+                <span class="tab-count">${library.stats.music}</span>
+              </button>
+            </div>
+
+            <div class="filter-group">
+              ${currentTab !== 'music' ? `
+                <button class="chip ${currentFilter === 'all' ? 'active' : ''}" data-filter="all">All</button>
+                <button class="chip ${currentFilter === 'Reel' ? 'active' : ''}" data-filter="Reel">🎬 Reels</button>
+                <button class="chip ${currentFilter === 'Post' ? 'active' : ''}" data-filter="Post">📷 Photos</button>
+                <button class="chip ${currentFilter === 'Video' ? 'active' : ''}" data-filter="Video">🎥 Videos</button>
+                <select class="sort-select" id="sortSelect">
+                  <option value="newest" ${currentSort === 'newest' ? 'selected' : ''}>⬇ Newest Saved</option>
+                  <option value="oldest" ${currentSort === 'oldest' ? 'selected' : ''}>⬆ Oldest Saved</option>
+                  <option value="author" ${currentSort === 'author' ? 'selected' : ''}>A-Z Creator</option>
+                </select>
+              ` : ''}
+            </div>
+          </div>
+
+          <div class="search-filter-bar">
+            <div class="search-box">
+              <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input class="search-input" id="searchInput" type="text" placeholder="Search captions, @creators, #hashtags... (Press / to search)" value="${esc(searchQuery)}">
+              <button class="search-clear" id="searchClear" title="Clear search">✕</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="tabContainer"></div>
+      `;
+
+      // Event listeners for tabs & search
+      container.querySelectorAll('[data-tab]').forEach(btn => {
+        btn.onclick = () => {
+          currentTab = btn.dataset.tab;
+          currentFilter = 'all';
+          searchQuery = '';
+          visibleCount = 48;
+          if (currentTab !== 'posts') activeCollection = null;
+          renderApp();
+        };
+      });
+
+      container.querySelectorAll('[data-filter]').forEach(btn => {
+        btn.onclick = () => {
+          currentFilter = btn.dataset.filter;
+          visibleCount = 48;
+          renderTabContent();
+        };
+      });
+
+      const sortSel = document.getElementById('sortSelect');
+      if (sortSel) {
+        sortSel.onchange = e => {
+          currentSort = e.target.value;
+          renderTabContent();
+        };
+      }
+
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.oninput = e => {
+          searchQuery = e.target.value;
+          visibleCount = 48;
+          renderTabContent();
+        };
+      }
+
+      const searchClear = document.getElementById('searchClear');
+      if (searchClear) {
+        searchClear.onclick = () => {
+          searchQuery = '';
+          searchInput.value = '';
+          searchInput.focus();
+          renderTabContent();
+        };
+      }
+
+      renderTabContent();
+    }
+
+    // Render Tab Content
+    function renderTabContent() {
+      teardownPreviews();
+      const container = document.getElementById('tabContainer');
+      const query = searchQuery.trim().toLowerCase();
+
+      // Tab 1: Collections Overview
+      if (currentTab === 'collections' && !activeCollection) {
+        const collections = (library.collections || []).filter(c => c.name.toLowerCase().includes(query));
+        if (!collections.length) {
+          container.innerHTML = `<div class="state-box"><h3>No collections found</h3><p>Try matching another keyword.</p></div>`;
+          return;
+        }
+        container.innerHTML = `
+          <div class="collections-grid">
+            ${collections.map((c) => `
+              <article class="collection-card" onclick="openCollectionByName('${esc(c.name)}')">
+                <div class="collection-cover">
+                  <div class="collection-icon-large">📁</div>
+                  <span class="collection-count-pill">${plural(c.count, 'item')}</span>
+                </div>
+                <div class="collection-info">
+                  <div class="collection-title-row">
+                    <h3 class="collection-name">${esc(c.name)}</h3>
+                    <span class="collection-badge-count">${c.count}</span>
+                  </div>
+                  <p class="collection-subtitle">${plural(c.count, 'saved post')}</p>
+                  <div class="collection-footer">
+                    <span>Browse Collection &rarr;</span>
+                  </div>
+                </div>
+              </article>
+            `).join('')}
+          </div>
+        `;
+        return;
+      }
+
+      // Tab 3: Saved Music
+      if (currentTab === 'music') {
+        const tracks = (library.music || []).filter(m => ((m.title || '') + ' ' + (m.artist || '')).toLowerCase().includes(query));
+        if (!tracks.length) {
+          container.innerHTML = `<div class="state-box"><h3>No saved music found</h3><p>Try searching for a different song or artist.</p></div>`;
+          return;
+        }
+        container.innerHTML = `
+          <div class="music-grid">
+            ${tracks.map(m => `
+              <article class="music-card">
+                <div class="music-avatar">♫</div>
+                <div class="music-details">
+                  <div class="music-title" title="${esc(m.title)}">${esc(m.title || 'Untitled Track')}</div>
+                  <div class="music-artist" title="${esc(m.artist)}">${esc(m.artist || 'Unknown Artist')}</div>
+                  <div class="music-links">
+                    <a class="music-link-btn" href="https://open.spotify.com/search/${encodeURIComponent((m.title || '') + ' ' + (m.artist || ''))}" target="_blank" rel="noopener">Spotify ↗</a>
+                    <a class="music-link-btn" href="https://www.youtube.com/results?search_query=${encodeURIComponent((m.title || '') + ' ' + (m.artist || ''))}" target="_blank" rel="noopener">YouTube ↗</a>
+                  </div>
+                </div>
+              </article>
+            `).join('')}
+          </div>
+        `;
+        return;
+      }
+
+      // Tab 2 & Collection Posts View
+      let posts = library.posts || [];
+      if (activeCollection) {
+        const allowedUrls = new Set(activeCollection.urls.map(u => u.replace(/\/$/, '')));
+        posts = posts.filter(p => allowedUrls.has(p.url.replace(/\/$/, '')));
+      }
+
+      // Media kind filter
+      if (currentFilter !== 'all') {
+        posts = posts.filter(p => p.kind === currentFilter);
+      }
+
+      // Search filter
+      if (query) {
+        posts = posts.filter(p => {
+          const haystack = (p.caption + ' ' + p.username + ' ' + p.owner + ' ' + (p.hashtags || '')).toLowerCase();
+          return haystack.includes(query);
+        });
+      }
+
+      // Sort
+      if (currentSort === 'oldest') {
+        posts = [...posts].reverse();
+      } else if (currentSort === 'author') {
+        posts = [...posts].sort((a, b) => (a.username || a.owner || '').localeCompare(b.username || b.owner || ''));
+      }
+
+      currentFilteredPosts = posts;
+
+      let html = '';
+      if (activeCollection) {
+        html += `
+          <div class="collection-header-banner">
+            <div class="collection-title-wrap">
+              <button class="btn-back" onclick="exitCollection()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                <span>Back to Collections</span>
+              </button>
+              <div>
+                <span class="collection-header-title">📁 ${esc(activeCollection.name)}</span>
+                <span class="collection-header-count">(${plural(posts.length, 'post')})</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (!posts.length) {
+        html += `<div class="state-box"><h3>No saved posts match your criteria</h3><p>Try clearing your search query or changing media filters.</p></div>`;
+        container.innerHTML = html;
+        return;
+      }
+
+      const visiblePosts = posts.slice(0, visibleCount);
+      html += `
+        <div class="posts-grid">
+          ${visiblePosts.map((p, idx) => postCardMarkup(p, idx)).join('')}
+        </div>
+        ${posts.length > visiblePosts.length ? `
+          <div class="load-more-wrap">
+            <button class="btn-load-more" id="btnLoadMore">
+              Load More Posts (${visiblePosts.length} of ${posts.length})
+            </button>
+          </div>
+        ` : ''}
+      `;
+
+      container.innerHTML = html;
+
+      const loadMoreBtn = document.getElementById('btnLoadMore');
+      if (loadMoreBtn) {
+        loadMoreBtn.onclick = () => {
+          visibleCount += 48;
+          renderTabContent();
+        };
+      }
+
+      setupIntersectionObserver();
+    }
+
+    // Post Card HTML Builder
+    function postCardMarkup(p, index) {
+      const url = cleanUrl(p.url);
+      const kind = p.kind || 'Post';
+      const kindClass = kind === 'Reel' ? 'badge-reel' : kind === 'Video' ? 'badge-video' : '';
+      const kindIcon = kind === 'Reel' ? '🎬' : kind === 'Video' ? '🎥' : '📷';
+      const caption = p.caption || '';
+      const owner = (p.owner || p.username || '').trim();
+      const isLongCaption = caption.length > 140;
+      const cardId = `post-card-${index}`;
+      const isMedia = kind === 'Reel' || kind === 'Video';
+
+      return `
+        <article class="post-card" id="${cardId}" data-url="${esc(url)}">
+          <div class="media-container" data-preview-url="${esc(url)}">
+            <div class="media-placeholder">
+              <div class="media-icon-watermark">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </div>
+              <div class="shimmer-spinner"></div>
+            </div>
+            ${isMedia ? `<div class="now-playing-badge" id="npb-${cardId}"><div class="now-playing-dot"></div><span>Playing</span></div>` : ''}
+            <span class="badge ${kindClass}" style="position:absolute;top:8px;right:8px;z-index:9;pointer-events:none;">${kindIcon} ${kind}</span>
+          </div>
+
+          <div class="card-body">
+            <div class="card-caption">
+              <p class="caption-text" id="cap-${cardId}">${linkifyText(caption || (owner ? `Post by ${owner}` : 'Saved Instagram item'))}</p>
+              ${isLongCaption ? `<button class="btn-read-more" onclick="toggleCaption('${cardId}', this)">Read more</button>` : ''}
+            </div>
+            <div class="card-meta-line">
+              <span>${esc(p.savedAt || '')}</span>
+            </div>
+          </div>
+
+          <footer class="card-footer">
+            <button class="btn-action btn-quickview" onclick="openModalByIndex(${index})" title="Open interactive viewer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+              <span>Quick View</span>
+            </button>
+            <button class="btn-action btn-copy" onclick="copyLink('${esc(url)}', this)" title="Copy Post URL">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Copy</span>
+            </button>
+            <a class="btn-open-insta" href="${esc(url)}" target="_blank" rel="noopener noreferrer" title="Open post directly on Instagram">
+              <span>Open</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </footer>
+        </article>
+      `;
+    }
+
+
+    // Toggle Read more / Read less
+    function toggleCaption(id, btn) {
+      const p = document.getElementById(`cap-${id}`);
+      if (!p) return;
+      const isExp = p.classList.toggle('expanded');
+      btn.textContent = isExp ? 'Show less' : 'Read more';
+    }
+
+    // Collection drill-down navigation
+    function openCollectionByName(name) {
+      activeCollection = (library.collections || []).find(c => c.name === name);
+      currentTab = 'posts';
+      currentFilter = 'all';
+      searchQuery = '';
+      visibleCount = 48;
+      renderApp();
+    }
+
+    function exitCollection() {
+      activeCollection = null;
+      currentTab = 'collections';
+      currentFilter = 'all';
+      renderApp();
+    }
+
+    // High-performance IntersectionObserver for Grid
+    function setupIntersectionObserver() {
+      teardownPreviews();
+      const elements = document.querySelectorAll('.media-container[data-preview-url]');
+      if (!elements.length) return;
+
+      const eagerCount = Math.min(8, elements.length);
+      for (let i = 0; i < eagerCount; i++) {
+        elements[i].dataset.near = '1';
+        loadIframe(elements[i]);
+      }
+
+      intersectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const el = entry.target;
+          if (entry.isIntersecting) {
+            el.dataset.near = '1';
+            loadIframe(el);
+          } else {
+            el.dataset.near = '0';
+            const rect = el.getBoundingClientRect();
+            if (rect.top < -2400 || rect.top > window.innerHeight + 2800) {
+              unloadIframe(el);
+            }
+          }
+        });
+      }, { rootMargin: '1000px 0px 1000px 0px', threshold: 0.01 });
+
+      elements.forEach(el => intersectionObserver.observe(el));
+    }
+
+    function loadIframe(container) {
+      if (activeFrames.has(container)) return;
+
+      if (activeFrames.size >= MAX_ACTIVE_FRAMES) {
+        const farthest = [...activeFrames.keys()].find(c => c.dataset.near !== '1');
+        if (farthest) unloadIframe(farthest);
+        else return;
+      }
+
+      const url = container.dataset.previewUrl;
+      const iframe = document.createElement('iframe');
+      iframe.loading = 'eager';
+      iframe.scrolling = 'no';
+      iframe.title = 'Instagram Post';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share; fullscreen');
+      iframe.setAttribute('allowfullscreen', 'true');
+      iframe.src = getEmbedUrl(url);
+
+      iframe.onload = () => {
+        const ph = container.querySelector('.media-placeholder');
+        if (ph) ph.style.opacity = '0';
+      };
+
+      container.appendChild(iframe);
+      activeFrames.set(container, iframe);
+    }
+
+    function unloadIframe(container) {
+      const iframe = activeFrames.get(container);
+      if (!iframe) return;
+      iframe.remove();
+      activeFrames.delete(container);
+      const ph = container.querySelector('.media-placeholder');
+      if (ph) ph.style.opacity = '1';
+    }
+
+    function teardownPreviews() {
+      if (intersectionObserver) intersectionObserver.disconnect();
+      activeFrames.forEach((iframe, container) => {
+        iframe.remove();
+        const ph = container.querySelector('.media-placeholder');
+        if (ph) ph.style.opacity = '1';
+      });
+      activeFrames.clear();
+    }
+
+    // Track which grid container was paused so we can restore after modal closes
+    let pausedGridContainer = null;
+    let pausedGridUrl = null;
+
+    // In-App Modal / Quick View Player
+    function openModalByIndex(index) {
+      if (index < 0 || index >= currentFilteredPosts.length) return;
+      modalPostIndex = index;
+      const post = currentFilteredPosts[index];
+      const url = cleanUrl(post.url);
+      const username = (post.username || '').trim();
+      const owner = (post.owner || '').trim();
+      const profileUrl = username ? `https://www.instagram.com/${encodeURIComponent(username)}/` : url;
+      const displayName = username ? `@${username}` : (owner || 'Instagram Post');
+      const avatarInitial = (username || owner || 'I').charAt(0).toUpperCase();
+
+      document.getElementById('modalAuthorAvatar').textContent = avatarInitial;
+      document.getElementById('modalAuthorHandle').textContent = displayName;
+      document.getElementById('modalAuthorOwner').textContent = owner && username ? owner : '';
+      document.getElementById('modalAuthorLink').href = profileUrl;
+
+      const kind = post.kind || 'Post';
+      const badge = document.getElementById('modalBadgeKind');
+      badge.textContent = `${kind === 'Reel' ? '🎬' : kind === 'Video' ? '🎥' : '📷'} ${kind}`;
+      badge.className = `badge ${kind === 'Reel' ? 'badge-reel' : kind === 'Video' ? 'badge-video' : ''}`;
+
+      document.getElementById('modalSavedDate').textContent = post.savedAt ? `Saved to archive on ${post.savedAt}` : '';
+      document.getElementById('modalCaption').innerHTML = linkifyText(post.caption || 'No caption available.');
+      document.getElementById('modalBtnOpen').href = url;
+
+      // Pause the grid iframe for this card to prevent double audio
+      const gridCard = document.querySelector(`.post-card[data-url="${CSS.escape(url)}"] .media-container`);
+      if (gridCard && activeFrames.has(gridCard)) {
+        pausedGridContainer = gridCard;
+        pausedGridUrl = url;
+        const iframe = activeFrames.get(gridCard);
+        iframe.src = 'about:blank';
+        activeFrames.delete(gridCard);
+      } else {
+        pausedGridContainer = null;
+        pausedGridUrl = null;
+      }
+
+      const modalIframe = document.getElementById('modalIframe');
+      modalIframe.src = getEmbedUrl(url);
+
+      document.getElementById('modalBtnPrev').disabled = modalPostIndex === 0;
+      document.getElementById('modalBtnNext').disabled = modalPostIndex === currentFilteredPosts.length - 1;
+
+      document.getElementById('modalContainer').classList.add('active');
+    }
+
+    function closeModal(event) {
+      if (event && event.target !== document.getElementById('modalContainer')) return;
+      document.getElementById('modalContainer').classList.remove('active');
+      document.getElementById('modalIframe').src = 'about:blank';
+      // Restore the paused grid iframe (without audio autoplay — user must click to play again)
+      if (pausedGridContainer) {
+        loadIframe(pausedGridContainer);
+        pausedGridContainer = null;
+        pausedGridUrl = null;
+      }
+      modalPostIndex = -1;
+    }
+
+
+    function navigateModal(direction) {
+      const nextIndex = modalPostIndex + direction;
+      if (nextIndex >= 0 && nextIndex < currentFilteredPosts.length) {
+        openModalByIndex(nextIndex);
+      }
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', e => {
+      const modal = document.getElementById('modalContainer');
+      if (modal.classList.contains('active')) {
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft') navigateModal(-1);
+        if (e.key === 'ArrowRight') navigateModal(1);
+        return;
+      }
+      if (e.key === '/' && document.activeElement !== document.getElementById('searchInput')) {
+        e.preventDefault();
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) searchInput.focus();
+      }
+    });
+
+    // Now-Playing Badge: detect click interaction on media containers
+    // Since Instagram embeds are cross-origin, we track which card the user last clicked/focused
+    let activePlayingCard = null;
+
+    function setNowPlaying(cardId) {
+      // Hide previous
+      if (activePlayingCard && activePlayingCard !== cardId) {
+        const prev = document.getElementById(`npb-${activePlayingCard}`);
+        if (prev) prev.classList.remove('visible');
+      }
+      activePlayingCard = cardId;
+      if (cardId) {
+        const badge = document.getElementById(`npb-${cardId}`);
+        if (badge) badge.classList.add('visible');
+      }
+    }
+
+    // Listen for clicks on media-containers so we know which card user interacted with
+    document.addEventListener('click', e => {
+      const mc = e.target.closest('.media-container[data-preview-url]');
+      if (mc) {
+        const card = mc.closest('.post-card');
+        if (card) setNowPlaying(card.id);
+      }
+    }, true);
+
+    // Instagram sends postMessage events when embed loads/plays — use to detect play start
+    window.addEventListener('message', e => {
+      try {
+        const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+        if (data && (data.type === 'INSTAGRAM_EMBED_ACTION' || data.type === 'VIDEO_PLAY' || data['@type'] === 'videoPlay')) {
+          // Find which iframe sent this message
+          const iframes = document.querySelectorAll('.media-container iframe');
+          for (const iframe of iframes) {
+            if (iframe.contentWindow === e.source) {
+              const card = iframe.closest('.post-card');
+              if (card) setNowPlaying(card.id);
+              break;
+            }
+          }
+        }
+      } catch (_) {}
+    });
+
+    // Initialization
+    initTheme();
+    document.getElementById('btnRefresh').onclick = () => loadLibrary(true);
+    loadLibrary();
+
+  </script>
+</body>
+</html>
