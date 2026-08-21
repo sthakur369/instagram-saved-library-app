@@ -1,141 +1,109 @@
-<div align="center">
+﻿<div align="center">
 
-# 📦 Instagram Saved Library & Vault
-### *Break free from Instagram without losing your saved knowledge, reels, and memories.*
+# 📦 Instagram Saved Library
+
+### *Delete Instagram without losing a single saved post.*
 
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
-[![Privacy: 100% Local](https://img.shields.io/badge/Privacy-100%25%20Offline%20%26%20Local-purple.svg)](#-privacy--security-guarantee)
-[![Platform: Windows | Mac | Linux](https://img.shields.io/badge/Platform-Windows%20%7C%20Mac%20%7C%20Linux-orange.svg)](#-quick-start-in-3-steps)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Privacy: 100% Offline](https://img.shields.io/badge/Privacy-100%25%20Offline-purple.svg)](#%EF%B8%8F-privacy)
+[![Platform: Windows · Mac · Linux](https://img.shields.io/badge/Platform-Windows%20%7C%20Mac%20%7C%20Linux-orange.svg)](#)
 
-<p align="center">
-  <b>A lightweight, blazing-fast, private offline viewer and player for your exported Instagram saved posts, collections, and audio.</b>
-</p>
+**Browse, search, and watch your saved Instagram reels, posts & collections — completely offline, no login required.**
 
 </div>
 
 ---
 
-## 💡 Why This Project Exists
+## Why does this exist?
 
-Thinking about deleting or deactivating your Instagram account, but hesitating because of **hundreds or thousands of saved posts** (recipes, workout routines, tech tutorials, travel guides, book recommendations, and reels)?
+You want to delete Instagram. But you have saved thousands of posts — recipes, workouts, tutorials, ideas.
 
-When you request your data from Instagram, Meta gives you raw HTML files with plain text links and no visual thumbnails or playable players.
+When you download your data from Instagram, you get raw HTML files with plain text links. No thumbnails. No players. Basically useless.
 
-**Instagram Saved Library** transforms your official Instagram export into a modern, visual, interactive personal vault. Browse, search, watch reels with audio, and explore your curated collections—**all 100% offline on your own computer without an active Instagram session.**
-
----
-
-## ✨ Features
-
-- 🎬 **In-App Reels & Video Playback** — Watch your saved reels and videos with audio directly inside the application.
-- 📁 **Collections & Folders** — Automatically organizes your custom Instagram saved collections with item counters.
-- 🎵 **Saved Music Vault** — Browse your saved tracks with 1-click links to search on Spotify & YouTube.
-- 🔍 **Instant Search & Hashtag Filtering** — Search across captions, `@creator` handles, and `#hashtags` in real time.
-- 🖼️ **Quick View Lightbox Modal** — High-resolution media viewer with full formatted captions and keyboard navigation (`←`, `→`, `Esc`).
-- 🌙 **Dark & Light Mode** — Seamless theme toggle matching your system preference.
-- ⚡ **Ultra-Lightweight & Scalable** — Intelligent memory virtualization keeps frame count low, ensuring smooth 60fps scrolling across 10,000+ posts.
-- 🔒 **100% Private & Local** — Zero tracking, zero telemetry, zero cloud uploads. Your data never leaves your computer.
+**This app fixes that.** Drop your exported files in one folder, double-click to launch, and your entire saved library opens as a clean visual gallery — playable reels, searchable captions, organized collections, everything.
 
 ---
 
-## 🚀 Quick Start in 3 Easy Steps
+## How to use it
 
-### Step 1: Export your Saved Posts from Instagram (Takes 2 minutes)
+### Step 1 — Download your saved posts from Instagram
 
-> **Tip:** Exporting *only* your saved posts takes **15–30 minutes** for Instagram to generate (compared to several days for a full account export).
+> ⏱️ Takes about 2 minutes to request. Instagram sends the file in 15–30 minutes.
 
-1. Open **[Instagram.com](https://www.instagram.com)** on your desktop browser.
-2. Click **More** (bottom left corner) ➔ **Settings** ➔ **Accounts Center**.
-3. In Accounts Center, click **Your information and permissions** ➔ **Download your information**.
-4. Click **Download or transfer information** and select your account.
-5. Select **Some of your information** (custom download).
-6. Scroll down to the **Saved items** section and check:
-   - ✅ **Saved posts**
-   - ✅ **Saved collections**
-   - ✅ **Saved music**
-7. On the format page, configure:
-   - **Destination**: *Download to device*
-   - **Date range**: *All time*
-   - **Format**: **HTML** *(Important: Choose HTML, not JSON)*
-   - **Media quality**: *Medium* or *High*
-8. Click **Create files**. Instagram will email you a download link when ready.
+1. Go to **Instagram.com** on your computer
+2. Click **More** → **Settings** → **Accounts Center**
+3. Go to **Your information and permissions** → **Download your information**
+4. Click **Download or transfer information** → select your account → **Some of your information**
+5. Scroll to **Saved items** and check:
+   - ✅ Saved posts
+   - ✅ Saved collections
+   - ✅ Saved music
+6. Set format to **HTML** *(not JSON)*, date range to **All time**, then click **Create files**
+7. Instagram emails you a download link. Download and unzip the file.
 
 ---
 
-### Step 2: Download & Extract into the `saved` Folder
+### Step 2 — Set up the app
 
-1. Download the `.zip` file from Instagram's email notification.
-2. Unzip the folder to your computer.
-3. Open the unzipped folder and navigate to:
+1. Open the unzipped folder and go to: `your_instagram_activity / saved`
+2. Clone this repository **directly into that `saved` folder**:
    ```
-   your_instagram_activity / saved
+   git clone https://github.com/sthakur369/instagram-saved-library
    ```
-   *(You will see `saved_posts.html`, `saved_collections.html`, and `saved_music.html` here)*
-4. Clone or extract this **`instagram_saved_library`** folder directly inside that **`saved`** folder!
+   Or download as a ZIP and extract it there.
 
----
-
-### Step 3: Run the App (Zero Configuration Needed!)
-
-- **Windows:** Double-click **`run.bat`**.
-- **Mac / Linux:** Run in terminal:
-  ```bash
-  python app.py
-  ```
-- **No Python? No problem!** Double-click **`public/index.html`** in any browser to use direct drag-and-drop browser mode!
-
-The app automatically detects your saved posts in the parent folder and opens in your browser at `http://127.0.0.1:8765`!
-
----
-
-## ⚙️ Automatic Detection & Configuration
-
-The app automatically searches for your export files in all standard locations:
-- Current folder: `./`
-- Parent folder: `../` (when placed inside `your_instagram_activity/saved/`)
-- Subfolder: `your_instagram_activity/saved/`
-
-If you keep your files in a custom directory, simply specify the path in `config.env`:
-
-```env
-# config.env (Optional - works automatically if left blank)
-INSTAGRAM_SAVED_FOLDER=
-PORT=8765
+Your folder structure should look like this:
+```
+saved/
+├── saved_posts.html
+├── saved_collections.html
+├── saved_music.html
+└── instagram_saved_library/   ← this repo goes here
+    ├── run.bat
+    └── app.py
 ```
 
 ---
 
-## 🛡️ Privacy & Security Guarantee
+### Step 3 — Launch
 
-| Aspect | Guarantee |
-| :--- | :--- |
-| **Server** | Localhost only (`127.0.0.1`). Not accessible over the network. |
-| **Data Storage** | All HTML parsing happens locally on your machine in Python or in your browser. |
-| **Media Previews** | Streamed directly from Instagram's official public embed CDN. |
-| **Credentials** | Never asks for or requires your Instagram password, cookies, or login. |
-| **Open Source** | 100% inspectable code with zero external tracking scripts. |
+- **Windows:** Double-click `run.bat` — that is it.
+- **Mac / Linux:** Open a terminal in the folder and run:
+  ```bash
+  python app.py
+  ```
 
----
+The app opens in your browser at `http://127.0.0.1:8765` automatically.
 
-## ⌨️ Keyboard Shortcuts
-
-| Key | Action |
-| :--- | :--- |
-| `/` | Focus search bar immediately |
-| `Esc` | Close Quick View Lightbox |
-| `←` | Previous post in Lightbox |
-| `→` | Next post in Lightbox |
+> **No Python installed?** Open `public/index.html` directly in your browser and drag-drop your export files.
 
 ---
 
-## 🛠️ Tech Stack & Architecture
+## What you get
 
-- **Backend**: Python 3 standard library (`http.server`, `re`, `json`, `pathlib`) — **0 external pip dependencies required!**
-- **Frontend**: Lightweight vanilla HTML5, CSS3 Custom Properties (Variables), and Modern JS (ES6+).
-- **Optimization**: `IntersectionObserver` iframe pool manager restricting active memory frames to ensure buttery-smooth scrolling.
+- 🎬 Watch reels and videos directly inside the app
+- 📁 Browse your saved collections as organized folders
+- 🔍 Search by caption, @creator, or #hashtag instantly
+- 🖼️ Quick View lightbox with keyboard navigation (`←` `→` `Esc`)
+- 🎵 Saved music with Spotify & YouTube search links
+- ⚡ Handles 10,000+ posts without slowing down
+- 🔒 100% offline — your data never leaves your computer
+
+---
+
+## 🛡️ Privacy
+
+Everything runs locally on your machine. The app never asks for your Instagram password, never uploads your data, and never connects to any server except Instagram's own public embed CDN to display post previews.
+
+---
+
+## Tech
+
+Python standard library only — **no pip installs required.** Single-file vanilla JS frontend.
 
 ---
 
 <div align="center">
-  <sub>Built with ❤️ for digital wellness and preserving knowledge.</sub>
+  <sub>Built for people who want to leave Instagram but keep their saved knowledge. ❤️</sub>
 </div>

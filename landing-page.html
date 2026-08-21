@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instagram Saved Library — Offline Viewer for Your Saved Posts</title>
+  <meta name="description" content="Keep all your saved Instagram reels, posts and collections after deleting your account. A free, private, offline viewer — no login, no cloud, just your data on your computer.">
+  <meta name="keywords" content="instagram saved posts offline viewer, instagram export viewer, delete instagram keep saved posts, instagram data download, instagram reel viewer offline, instagram saved library, instagram collections browser">
+  <meta property="og:title" content="Instagram Saved Library — Keep Your Saved Posts After Deleting Instagram">
+  <meta property="og:description" content="Browse, search & watch all your saved Instagram content offline. Free, open source, 100% private.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #faf9f7;
+      --warm-white: #ffffff;
+      --ink: #1a1a2e;
+      --ink-muted: #5a5a7a;
+      --ink-faint: #9a9ab0;
+      --accent: #6c63ff;
+      --accent-2: #f093a0;
+      --accent-3: #43c9a0;
+      --border: #e8e8f0;
+      --border-soft: #f0f0f8;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow-sm: 0 2px 12px rgba(108,99,255,.07);
+      --shadow-md: 0 8px 32px rgba(108,99,255,.12);
+      --shadow-lg: 0 20px 60px rgba(26,26,46,.1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,249,247,.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(20px, 5vw, 64px);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-logo-dot {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      border-radius: 8px;
+    }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 18px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 100px;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity .2s, transform .2s;
+    }
+    .nav-cta:hover { opacity: .82; transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: clamp(64px, 10vw, 120px) clamp(20px, 5vw, 64px) clamp(48px, 7vw, 80px);
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent-3);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(.7); }
+    }
+    h1 {
+      font-size: clamp(36px, 6vw, 62px);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      margin-bottom: 22px;
+      color: var(--ink);
+    }
+    h1 .grad {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2.2vw, 19px);
+      color: var(--ink-muted);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      font-weight: 400;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 14px 28px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(108,99,255,.32);
+      transition: transform .22s, box-shadow .22s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(108,99,255,.38); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 14px 24px;
+      background: var(--warm-white);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: var(--shadow-sm);
+      transition: transform .22s, box-shadow .22s, border-color .2s;
+    }
+    .btn-ghost:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: #c8c8e0; }
+
+    /* SECTION WRAPPER */
+    section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: clamp(48px, 8vw, 96px) clamp(20px, 5vw, 40px);
+    }
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    h2 {
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 800;
+      letter-spacing: -.025em;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 16px;
+      color: var(--ink-muted);
+      max-width: 540px;
+      margin-bottom: 52px;
+    }
+
+    /* STEPS */
+    .steps-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 0 24px;
+      align-items: start;
+      position: relative;
+    }
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 27px;
+      top: 56px;
+      width: 2px;
+      height: calc(100% - 28px);
+      background: linear-gradient(180deg, var(--border) 0%, transparent 100%);
+    }
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: var(--warm-white);
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--accent);
+      box-shadow: var(--shadow-sm);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .step-content {
+      background: var(--warm-white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow .25s, transform .25s, border-color .2s;
+    }
+    .step-content:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      border-color: #d0d0e8;
+    }
+    .step-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .step-title .tag {
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 2px 9px;
+      border-radius: 100px;
+      background: #f0eeff;
+      color: var(--accent);
+      border: 1px solid #e0dcff;
+    }
+    .step-body {
+      font-size: 14.5px;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+    .step-body ol, .step-body ul {
+      padding-left: 18px;
+      margin-top: 10px;
+    }
+    .step-body li { margin-bottom: 6px; }
+    .step-body strong { color: var(--ink); font-weight: 600; }
+    .step-body code {
+      background: #f0f0f8;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 1px 6px;
+      font-size: 13px;
+      font-family: 'SFMono-Regular', Consolas, monospace;
+      color: var(--accent);
+    }
+    .step-tip {
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: #f7fbf9;
+      border: 1px solid #d0ede4;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: #3a7a64;
+      display: flex;
+      gap: 8px;
+    }
+    .step-tip::before { content: '💡'; flex-shrink: 0; }
+    .folder-tree {
+      margin-top: 14px;
+      padding: 14px 18px;
+      background: #f5f5fc;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: 'SFMono-Regular', Consolas, monospace;
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.9;
+    }
+    .folder-tree .hl { color: var(--accent); font-weight: 600; }
+
+    /* FEATURES */
+    .features-section {
+      background: var(--warm-white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 22px;
+      transition: box-shadow .22s, transform .22s, border-color .2s;
+    }
+    .feature-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+      border-color: #d0d0e8;
+    }
+    .feature-icon {
+      font-size: 26px;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .feature-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .feature-desc {
+      font-size: 13.5px;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    /* PRIVACY STRIP */
+    .privacy-strip {
+      text-align: center;
+    }
+    .privacy-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .privacy-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--warm-white);
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink);
+      box-shadow: var(--shadow-sm);
+    }
+    .privacy-pill .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent-3);
+    }
+
+    /* CTA FOOTER */
+    .cta-section {
+      text-align: center;
+      padding: clamp(64px, 10vw, 120px) clamp(20px, 5vw, 40px);
+      background: linear-gradient(160deg, #f5f4ff 0%, #fdfafa 60%, #f0fcf8 100%);
+      border-top: 1px solid var(--border);
+    }
+    .cta-section h2 { margin-bottom: 16px; }
+    .cta-section p {
+      font-size: 16px;
+      color: var(--ink-muted);
+      margin-bottom: 36px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px clamp(20px, 5vw, 64px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--ink-faint);
+    }
+    footer a { color: var(--ink-muted); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    /* SCROLL REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .step { grid-template-columns: 44px 1fr; gap: 0 16px; }
+      .step-num { width: 44px; height: 44px; font-size: 16px; border-radius: 12px; }
+      .step:not(:last-child)::after { left: 21px; }
+      .features-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    Saved Library
+  </a>
+  <a href="https://github.com/sthakur369/instagram-saved-library" target="_blank" rel="noopener" class="nav-cta">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+    View on GitHub
+  </a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">
+    <div class="hero-badge-dot"></div>
+    Free · Open Source · 100% Offline
+  </div>
+  <h1>Keep your saved posts.<br><span class="grad">Delete Instagram.</span></h1>
+  <p class="hero-sub">
+    Turn your Instagram data export into a beautiful offline gallery. Watch reels, browse collections, and search everything — no login, no cloud.
+  </p>
+  <div class="hero-actions">
+    <a href="https://github.com/sthakur369/instagram-saved-library" target="_blank" rel="noopener" class="btn-primary">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      Download Free on GitHub
+    </a>
+    <a href="#how-it-works" class="btn-ghost">
+      See how it works
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+    </a>
+  </div>
+</div>
+
+<section id="how-it-works">
+  <p class="section-label reveal">How it works</p>
+  <h2 class="reveal">From Instagram to your private gallery<br>in 3 simple steps.</h2>
+  <p class="section-sub reveal">No technical knowledge needed. If you can download a file and double-click it, you can use this.</p>
+
+  <div class="steps-wrapper">
+
+    <div class="step reveal">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">
+          Download your data from Instagram
+          <span class="tag">⏱ 2 min setup</span>
+        </div>
+        <div class="step-body">
+          Go to <strong>Instagram.com</strong> on your computer and follow this path:
+          <ol>
+            <li><strong>More</strong> → <strong>Settings</strong> → <strong>Accounts Center</strong></li>
+            <li><strong>Your information and permissions</strong> → <strong>Download your information</strong></li>
+            <li>Click <strong>Download or transfer information</strong> → pick your account → <strong>Some of your information</strong></li>
+            <li>Scroll to <strong>Saved items</strong> and check: <strong>Saved posts</strong>, <strong>Saved collections</strong>, <strong>Saved music</strong></li>
+            <li>Set format to <strong>HTML</strong> (not JSON), date range to <strong>All time</strong> → click <strong>Create files</strong></li>
+          </ol>
+          <div class="step-tip">Instagram will email you a download link. This usually takes 15–30 minutes.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">
+          Drop the app into your export folder
+          <span class="tag">No install</span>
+        </div>
+        <div class="step-body">
+          <ol>
+            <li>Download and unzip the Instagram export file</li>
+            <li>Navigate inside to: <code>your_instagram_activity / saved</code></li>
+            <li>Download this app from GitHub and place the <code>instagram-saved-library</code> folder inside <code>saved</code></li>
+          </ol>
+          <div class="folder-tree">
+saved/<br>
+├── saved_posts.html<br>
+├── saved_collections.html<br>
+├── saved_music.html<br>
+└── <span class="hl">instagram-saved-library/</span>  ← app goes here<br>
+&nbsp;&nbsp;&nbsp;&nbsp;└── run.bat
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">
+          Launch and enjoy
+          <span class="tag">Double-click</span>
+        </div>
+        <div class="step-body">
+          <strong>Windows:</strong> Double-click <code>run.bat</code> — that's it.<br><br>
+          <strong>Mac / Linux:</strong> Open a terminal in the folder and run <code>python app.py</code><br><br>
+          Your browser opens with your entire saved library as a visual gallery. Search, browse, watch.
+          <div class="step-tip">No Python? Open <code>public/index.html</code> directly in your browser and drag-drop your export files.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="features-section">
+  <section>
+    <p class="section-label reveal">Features</p>
+    <h2 class="reveal">Everything you had on Instagram,<br>now yours forever.</h2>
+    <p class="section-sub reveal">A complete offline experience for your saved content library.</p>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <span class="feature-icon">🎬</span>
+        <div class="feature-title">Reels & Video Playback</div>
+        <div class="feature-desc">Watch your saved reels and videos with sound directly inside the app. No redirects.</div>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">📁</span>
+        <div class="feature-title">Collections Browser</div>
+        <div class="feature-desc">Your custom Instagram collections appear as organized folders with thumbnails and item counts.</div>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">🔍</span>
+        <div class="feature-title">Instant Search</div>
+        <div class="feature-desc">Search across captions, @creators, and #hashtags in real-time across all your posts.</div>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">🖼️</span>
+        <div class="feature-title">Quick View Lightbox</div>
+        <div class="feature-desc">Click any post to open a full-screen viewer. Navigate with arrow keys, close with Esc.</div>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">🎵</span>
+        <div class="feature-title">Saved Music Vault</div>
+        <div class="feature-desc">Browse your saved tracks with direct links to find them on Spotify and YouTube.</div>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">⚡</span>
+        <div class="feature-title">Lightning Fast</div>
+        <div class="feature-desc">Intelligent frame pooling keeps it smooth and snappy even with 10,000+ saved posts.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="privacy-strip">
+  <p class="section-label reveal">Privacy first</p>
+  <h2 class="reveal">Your data stays on your computer.<br>Completely.</h2>
+  <p class="section-sub reveal" style="margin: 0 auto 0; max-width: 520px;">
+    No account needed. No password. No cloud. Everything runs locally — the only outbound connection is to Instagram's own public embed CDN to display your post previews.
+  </p>
+  <div class="privacy-pills">
+    <div class="privacy-pill reveal"><div class="dot"></div> No login required</div>
+    <div class="privacy-pill reveal"><div class="dot"></div> Zero cloud uploads</div>
+    <div class="privacy-pill reveal"><div class="dot"></div> No tracking or analytics</div>
+    <div class="privacy-pill reveal"><div class="dot"></div> 100% open source</div>
+    <div class="privacy-pill reveal"><div class="dot"></div> Runs on localhost only</div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <p class="section-label reveal">Get started</p>
+  <h2 class="reveal">Ready to take your saved posts<br>with you?</h2>
+  <p class="reveal">Free, forever. No signup. No nonsense. Just download and run.</p>
+  <div class="hero-actions reveal">
+    <a href="https://github.com/sthakur369/instagram-saved-library" target="_blank" rel="noopener" class="btn-primary">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      Download Free on GitHub
+    </a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Instagram Saved Library — MIT License</span>
+  <span>
+    <a href="https://github.com/sthakur369/instagram-saved-library" target="_blank" rel="noopener">GitHub</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/sthakur369/instagram-saved-library/issues" target="_blank" rel="noopener">Report an Issue</a>
+  </span>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+  document.querySelectorAll('.features-grid, .privacy-pills').forEach(grid => {
+    Array.from(grid.children).forEach((child, i) => { child.style.transitionDelay = `${i * 60}ms`; });
+  });
+</script>
+
+</body>
+</html>
