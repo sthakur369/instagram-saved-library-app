@@ -14,6 +14,11 @@
 
 ---
 
+![App Screenshot](public/screenshots/1.png)
+
+---
+
+
 ## Why does this exist?
 
 You want to delete Instagram. But you have saved thousands of posts — recipes, workouts, tutorials, ideas.
