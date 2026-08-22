@@ -6,6 +6,7 @@
 
 **Turn your Instagram data export into a private, searchable visual library.**
 
+[![Website](https://img.shields.io/badge/Website-Visit%20Site-8a6f5a.svg)](https://sthakur369.github.io/instagram-saved-library-site/)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
 [![Privacy: Local & Offline](https://img.shields.io/badge/Privacy-Local%20%26%20Offline-purple.svg)](#privacy)
 [![Platform: Windows · Mac · Linux](https://img.shields.io/badge/Platform-Windows%20%7C%20Mac%20%7C%20Linux-orange.svg)](#)
