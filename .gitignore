@@ -2,3 +2,6 @@ cache/
 __pycache__/
 config.env
 ignore_folder
+saved_collections.html
+saved_music.html
+saved_posts.html
