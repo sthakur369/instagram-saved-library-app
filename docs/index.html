@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Instagram Saved Library — Offline Viewer for Your Saved Posts</title>
-  <meta name="description" content="Keep all your saved Instagram reels, posts and collections after deleting your account. A free, private, offline viewer — no login, no cloud, just your data on your computer.">
+  <title>Delete Instagram Without Losing Your Saved Posts & Reels | Instagram Saved Library</title>
+  <meta name="description" content="Delete Instagram without losing your saved posts and Reels. Turn your Instagram data export into a private, searchable library. Install Python once for one-click access, or use browser mode with no installation.">
   <meta name="keywords" content="instagram saved posts offline viewer, instagram export viewer, delete instagram keep saved posts, instagram data download, instagram reel viewer offline, instagram saved library, instagram collections browser">
-  <meta property="og:title" content="Instagram Saved Library — Keep Your Saved Posts After Deleting Instagram">
-  <meta property="og:description" content="Browse, search & watch all your saved Instagram content offline. Free, open source, 100% private.">
+  <meta property="og:title" content="Delete Instagram Without Losing Your Saved Posts & Reels">
+  <meta property="og:description" content="Turn your Instagram data export into a private, searchable saved-post library. Install Python once for one-click access, or use browser mode with no installation.">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -434,7 +434,143 @@ footer a:hover{color:#6e5748}
 }
 .reveal.visible{opacity:1;transform:none}
 
+/* Product screenshot showcase */
+.app-showcase{margin:34px auto 42px;max-width:980px}
+.showcase-heading{display:flex;align-items:center;gap:11px;margin:0 0 12px 3px}
+.showcase-eyebrow{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#9a7459;white-space:nowrap}
+.showcase-line{height:1px;flex:1;background:linear-gradient(90deg,#d9c7b6,transparent)}
+.showcase-frame{position:relative;overflow:hidden;border:1px solid #dfd3c7;border-radius:18px;background:#fffdf9;box-shadow:0 22px 50px rgba(83,67,51,.12),0 4px 12px rgba(83,67,51,.055);transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s cubic-bezier(.16,1,.3,1)}
+.showcase-frame::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(112deg,rgba(255,255,255,.17),transparent 28%,transparent 72%,rgba(255,255,255,.07))}
+.app-showcase:hover .showcase-frame{transform:translateY(-5px);box-shadow:0 30px 65px rgba(83,67,51,.15),0 7px 16px rgba(83,67,51,.06)}
+.showcase-window-bar{height:37px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 12px;background:#f7f1ea;border-bottom:1px solid #e7ddd1;color:#938980;font-size:9px;font-weight:650}
+.window-dots{display:flex;gap:5px;align-items:center}.window-dots span{width:6px;height:6px;border-radius:50%;background:#d8c8ba}
+.window-status{justify-self:end;color:#a09287;font-size:8px}
+.showcase-image-wrap{background:#eee7df;line-height:0;overflow:hidden}
+.showcase-image-wrap img{display:block;width:100%;height:auto;max-height:690px;object-fit:contain;object-position:center top;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.app-showcase:hover .showcase-image-wrap img{transform:scale(1.008)}
+.showcase-caption{text-align:center;margin:12px auto 0;color:#948a80;font-size:10px;line-height:1.5}
+
+.search-faq{padding-top:65px;padding-bottom:72px}
+.faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:26px}
+.faq-item{background:rgba(255,253,249,.76);border:1px solid var(--border);border-radius:14px;padding:17px 18px;box-shadow:var(--shadow)}
+.faq-item h3{font-family:"DM Sans","Helvetica Neue",Arial,sans-serif;font-size:11.5px;line-height:1.45;font-weight:700;color:#463d36;margin-bottom:6px}
+.faq-item p{font-size:10.5px;line-height:1.6;color:#827970}
+
+.beginner-guide{padding-top:76px}
+.beginner-note{
+  display:flex;align-items:flex-start;gap:10px;
+  max-width:720px;margin:0 auto 30px;
+  padding:12px 14px;background:#edf2ec;
+  border:1px solid #d9e3d8;border-radius:11px;
+  color:#718274;font-size:11px;line-height:1.6;
+}
+.beginner-note-icon{
+  flex:0 0 19px;width:19px;height:19px;border-radius:50%;
+  display:grid;place-items:center;background:#78917f;color:#fff;
+  font-size:10px;font-weight:800;margin-top:1px;
+}
+.simple-steps{
+  max-width:800px;margin:0 auto;
+  display:flex;flex-direction:column;gap:11px;
+}
+.simple-step{
+  display:grid;grid-template-columns:48px 1fr;gap:0 15px;
+  align-items:start;
+}
+.simple-step-number{
+  width:48px;height:48px;border-radius:13px;
+  display:grid;place-items:center;
+  background:linear-gradient(145deg,#eee0d3,#e3ebe2);
+  border:1px solid #dfd3c7;
+  color:#8b6b52;
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:20px;font-weight:700;
+  box-shadow:0 5px 14px rgba(83,67,51,.055);
+}
+.simple-step-content{
+  background:rgba(255,253,249,.88);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:18px 20px;
+  box-shadow:var(--shadow);
+}
+.simple-step-kicker{
+  font-size:8.5px;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:#9a7459;margin-bottom:4px;
+}
+.simple-step-content h3{
+  font-size:14px;font-weight:700;color:#403932;
+  line-height:1.35;margin-bottom:8px;
+}
+.simple-step-content p{
+  font-size:11.5px;line-height:1.7;color:#7b7269;margin:5px 0;
+}
+.simple-step-content strong{color:#4a4139}
+.simple-step-content code{
+  background:#f1e9df;border:1px solid #e1d3c5;
+  border-radius:5px;padding:2px 5px;
+  font-size:10px;font-family:"SFMono-Regular",Consolas,monospace;
+  color:#8a664e;
+}
+.simple-step-tip{
+  margin-top:11px;padding:8px 10px;
+  background:#f4eee7;border:1px solid #e3d7ca;
+  border-radius:8px;font-size:10.5px;line-height:1.55;color:#84796f;
+}
+.folder-visual{
+  margin-top:12px;padding:11px 13px;
+  background:#f4eee7;border:1px solid #e3d7ca;border-radius:8px;
+  display:flex;flex-direction:column;gap:2px;
+  font-family:"SFMono-Regular",Consolas,monospace;
+  font-size:9.5px;line-height:1.65;color:#887d73;
+}
+.folder-visual strong{color:#8a664e}
+.beginner-help{
+  max-width:800px;margin:16px auto 0;
+  padding:11px 14px;border:1px solid var(--border);
+  border-radius:10px;background:rgba(255,253,249,.7);
+  color:#817870;font-size:10.5px;line-height:1.6;text-align:center;
+}
+.beginner-help strong{color:#51483f}
+.beginner-help code{
+  background:#f1e9df;border:1px solid #e1d3c5;border-radius:5px;
+  padding:2px 5px;font-size:9.5px;color:#8a664e;
+}
+
+
+/* Two clear setup paths: recommended one-time setup + no-install fallback */
+.beginner-guide{padding-top:76px}
+.setup-options{max-width:930px;margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;gap:14px}
+.setup-option{position:relative;background:rgba(255,253,249,.9);border:1px solid var(--border);border-radius:17px;padding:23px;box-shadow:var(--shadow)}
+.setup-recommended{border-color:#d9c8b7;box-shadow:0 14px 36px rgba(83,67,51,.08)}
+.setup-badge{position:absolute;right:16px;top:15px;padding:4px 8px;border-radius:999px;background:#edf2ec;border:1px solid #d9e3d8;color:#708273;font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.12em}
+.setup-option-icon{width:37px;height:37px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(145deg,#eee0d3,#e3ebe2);border:1px solid #dfd3c7;color:#8b6b52;font-size:17px;margin-bottom:14px}
+.setup-option h3{font-size:17px;line-height:1.3;color:#403932;margin:3px 0 7px}
+.setup-lead{font-size:11px;line-height:1.65;color:#7b7269}
+.setup-list{display:flex;flex-direction:column;gap:9px;margin:18px 0}
+.setup-list>div{display:grid;grid-template-columns:24px 1fr;gap:9px;align-items:start}
+.setup-list span{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#f2e8de;border:1px solid #e2d4c7;color:#8a664e;font-size:9px;font-weight:800}
+.setup-list p{font-size:10.5px;line-height:1.6;color:#776e66;margin:1px 0}
+.setup-list strong{color:#4a4139}
+.setup-option code,.setup-flow code,.setup-details code{background:#f1e9df;border:1px solid #e1d3c5;border-radius:5px;padding:2px 5px;font-size:9.5px;color:#8a664e}
+.setup-link{display:inline-block;color:#89684f;font-size:10.5px;font-weight:750;text-decoration:underline;text-underline-offset:3px;margin-top:2px}
+.setup-link:hover{color:#684d3b}
+.simple-step-tip{margin-top:13px;padding:9px 11px;background:#f4eee7;border:1px solid #e3d7ca;border-radius:9px;font-size:10px;line-height:1.55;color:#84796f}
+.browser-limit{padding:9px 11px;background:#faf4ee;border:1px solid #e7ddd1;border-radius:9px;font-size:10px;line-height:1.55;color:#827970;margin:12px 0 2px}
+.setup-flow{max-width:930px;margin:16px auto 0;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;color:#8a8077;font-size:9.5px}
+.setup-flow>div{padding:8px 11px;background:rgba(255,253,249,.72);border:1px solid var(--border);border-radius:9px}
+.setup-flow span{margin-left:9px;color:#b19d8c}
+.setup-details{max-width:930px;margin:16px auto 0;border:1px solid var(--border);border-radius:13px;background:rgba(255,253,249,.68);overflow:hidden}
+.setup-details summary{cursor:pointer;padding:13px 16px;font-size:10.5px;font-weight:700;color:#68594d}
+.setup-details-body{padding:0 18px 18px;border-top:1px solid var(--border)}
+.setup-details-body h4{font-size:11px;color:#4c433c;margin:17px 0 6px}
+.setup-details-body p{font-size:10.5px;line-height:1.65;color:#817870;margin:5px 0}
+.setup-details-body pre{margin:8px 0 0;padding:12px 13px;background:#f4eee7;border:1px solid #e3d7ca;border-radius:9px;overflow:auto;font-size:9px;line-height:1.65;color:#776c63}
 @media(max-width:800px){
+  .setup-options{grid-template-columns:1fr}.setup-option{padding:19px}.setup-badge{right:13px;top:13px}.setup-flow{justify-content:flex-start}
+  .simple-step{grid-template-columns:40px 1fr;gap:0 10px}.simple-step-number{width:40px;height:40px;border-radius:11px;font-size:18px}.simple-step-content{padding:16px}.beginner-note{font-size:10.5px}
+  .faq-grid{grid-template-columns:1fr}
+  .app-showcase{margin:27px auto 34px}.showcase-frame{border-radius:14px}.showcase-window-bar{height:31px;font-size:8px;padding:0 9px}.window-status{display:none}.showcase-image-wrap img{max-height:none}
   .features-grid{grid-template-columns:repeat(2,1fr)}
   .hero-panel{padding:42px 30px}
 }
@@ -455,189 +591,342 @@ footer a:hover{color:#6e5748}
   footer{flex-direction:column;align-items:flex-start}
 }
 </style>
+
+  <meta name="description" content="Instagram Saved Library turns your Instagram data export into a private, searchable offline gallery for saved posts, Reels, collections, and music. No account, cloud upload, or subscription.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="Shubham Thakur">
+  <link rel="canonical" href="https://sthakur369.github.io/instagram-saved-library/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Instagram Saved Library — Your saves, outside Instagram">
+  <meta property="og:description" content="Turn your Instagram data export into a private, searchable offline gallery for saved posts, Reels, collections, and music.">
+  <meta property="og:url" content="https://sthakur369.github.io/instagram-saved-library/">
+  <meta property="og:site_name" content="Instagram Saved Library">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Delete Instagram Without Losing Your Saved Posts & Reels">
+  <meta name="twitter:description" content="Turn your Instagram data export into a private, searchable saved-post library. Install Python once for one-click access, or use browser mode with no installation.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://sthakur369.github.io/instagram-saved-library/#website",
+        "url": "https://sthakur369.github.io/instagram-saved-library/",
+        "name": "Instagram Saved Library",
+        "description": "A private offline library that turns an Instagram data export into a searchable gallery of saved posts, Reels, collections, and music."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://sthakur369.github.io/instagram-saved-library/#app",
+        "name": "Instagram Saved Library",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Windows, macOS, Linux",
+        "isAccessibleForFree": true,
+        "license": "https://opensource.org/licenses/MIT",
+        "description": "An open-source local application that turns an Instagram data export into a searchable offline gallery of saved posts, Reels, collections, and music."
+      }
+    ]
+  }
+  </script>
+
 </head>
 <body>
-
-<nav>
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-dot"></div>
-    Saved Library
-  </a>
-  <a href="https://github.com/sthakur369/instagram-saved-library" target="_blank" rel="noopener" class="nav-cta">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
-    View on GitHub
-  </a>
-</nav>
-
-<div class="hero">
-  <div class="hero-badge">
-    <div class="hero-badge-dot"></div>
-    Free · Open Source · 100% Offline
-  </div>
-  <h1>Keep your saved posts.<br><span class="grad">Delete Instagram.</span></h1>
-  <p class="hero-sub">
-    Turn your Instagram data export into a beautiful offline gallery. Watch reels, browse collections, and search everything — no login, no cloud.
-  </p>
-  <div class="hero-actions">
-    <a href="https://github.com/sthakur369/instagram-saved-library" target="_blank" rel="noopener" class="btn-primary">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
-      Download Free on GitHub
+  <nav>
+    <a class="nav-logo" href="#" aria-label="Instagram Saved Library home">
+      <span class="nav-logo-dot"></span>
+      <span>Saved Library</span>
     </a>
-    <a href="#how-it-works" class="btn-ghost">
-      See how it works
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+    <a class="nav-cta" href="https://github.com/sthakur369/instagram-saved-library" target="_blank" rel="noopener">
+      View on GitHub
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M9 5h10v10M19 5 5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </a>
-  </div>
-</div>
+  </nav>
 
-<section id="how-it-works">
-  <p class="section-label reveal">How it works</p>
-  <h2 class="reveal">From Instagram to your private gallery<br>in 3 simple steps.</h2>
-  <p class="section-sub reveal">No technical knowledge needed. If you can download a file and double-click it, you can use this.</p>
+  <main>
+    <!-- 1. First target: someone who wants to leave Instagram. -->
+    <div class="hero">
+      <div class="hero-panel">
+        <div class="hero-inner">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            For people leaving Instagram
+          </div>
 
-  <div class="steps-wrapper">
+          <h1>Ready to delete Instagram?<br><span class="grad">Don't lose your saves.</span></h1>
 
-    <div class="step reveal">
-      <div class="step-num">1</div>
-      <div class="step-content">
-        <div class="step-title">
-          Download your data from Instagram
-          <span class="tag">⏱ 2 min setup</span>
-        </div>
-        <div class="step-body">
-          Go to <strong>Instagram.com</strong> on your computer and follow this path:
-          <ol>
-            <li><strong>More</strong> → <strong>Settings</strong> → <strong>Accounts Center</strong></li>
-            <li><strong>Your information and permissions</strong> → <strong>Download your information</strong></li>
-            <li>Click <strong>Download or transfer information</strong> → pick your account → <strong>Some of your information</strong></li>
-            <li>Scroll to <strong>Saved items</strong> and check: <strong>Saved posts</strong>, <strong>Saved collections</strong>, <strong>Saved music</strong></li>
-            <li>Set format to <strong>HTML</strong> (not JSON), date range to <strong>All time</strong> → click <strong>Create files</strong></li>
-          </ol>
-          <div class="step-tip">Instagram will email you a download link. This usually takes 15–30 minutes.</div>
-        </div>
-      </div>
-    </div>
+          <p class="hero-sub">
+            Instagram can take more of your time than you want to give it.
+            If you're ready to leave, there's one thing worth taking with you:
+            the posts and Reels you saved.
+          </p>
 
-    <div class="step reveal">
-      <div class="step-num">2</div>
-      <div class="step-content">
-        <div class="step-title">
-          Drop the app into your export folder
-          <span class="tag">No install</span>
-        </div>
-        <div class="step-body">
-          <ol>
-            <li>Download and unzip the Instagram export file</li>
-            <li>Navigate inside to: <code>your_instagram_activity / saved</code></li>
-            <li>Download this app from GitHub and place the <code>instagram-saved-library</code> folder inside <code>saved</code></li>
-          </ol>
-          <div class="folder-tree">
-saved/<br>
-├── saved_posts.html<br>
-├── saved_collections.html<br>
-├── saved_music.html<br>
-└── <span class="hl">instagram-saved-library/</span>  ← app goes here<br>
-&nbsp;&nbsp;&nbsp;&nbsp;└── run.bat
+          <div class="hero-actions reveal">
+            <a class="btn-primary" href="https://github.com/sthakur369/instagram-saved-library" target="_blank" rel="noopener">
+              Save my Instagram library
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a class="btn-ghost" href="#how">How it works</a>
+          </div>
+
+          <div class="hero-note">
+            <span></span> No account
+            <span></span> No cloud upload
+            <span></span> No complicated setup
           </div>
         </div>
       </div>
     </div>
 
-    <div class="step reveal">
-      <div class="step-num">3</div>
-      <div class="step-content">
-        <div class="step-title">
-          Launch and enjoy
-          <span class="tag">Double-click</span>
+    <!-- 2. The exact problem the searcher has. -->
+    <section id="how" class="reveal">
+      <div class="section-label">The problem</div>
+      <h2>“I downloaded my Instagram data.<br>Now what?”</h2>
+      <p class="section-sub">
+        Instagram gives you an export, but your saved posts can end up as plain HTML pages
+        that are difficult to browse. That's not a library. That's where this app comes in.
+      </p>
+
+      <div class="app-showcase reveal">
+        <div class="showcase-heading">
+          <span class="showcase-eyebrow">What your export becomes</span>
+          <span class="showcase-line"></span>
         </div>
-        <div class="step-body">
-          <strong>Windows:</strong> Double-click <code>run.bat</code> — that's it.<br><br>
-          <strong>Mac / Linux:</strong> Open a terminal in the folder and run <code>python app.py</code><br><br>
-          Your browser opens with your entire saved library as a visual gallery. Search, browse, watch.
-          <div class="step-tip">No Python? Open <code>public/index.html</code> directly in your browser and drag-drop your export files.</div>
+        <div class="showcase-frame">
+          <div class="showcase-window-bar">
+            <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span>Instagram Saved Library</span>
+            <span class="window-status">Your library</span>
+          </div>
+          <div class="showcase-image-wrap">
+            <img src="screenshots/1.png"
+                 alt="Instagram Saved Library showing saved posts, Reels, collections and search"
+                 loading="lazy">
+          </div>
         </div>
+        <p class="showcase-caption">Your plain Instagram export, turned into a library you can actually browse.</p>
       </div>
-    </div>
 
-  </div>
-</section>
+      <div class="steps-wrapper">
+        <article class="step reveal">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <div class="step-title">You want to delete Instagram <span class="tag">No problem</span></div>
+            <div class="step-body">
+              Download your Instagram information first. Keep your saved posts, Reels, collections and music.
+            </div>
+          </div>
+        </article>
 
-<div class="features-section">
-  <section>
-    <p class="section-label reveal">Features</p>
-    <h2 class="reveal">Everything you had on Instagram,<br>now yours forever.</h2>
-    <p class="section-sub reveal">A complete offline experience for your saved content library.</p>
-    <div class="features-grid">
-      <div class="feature-card reveal">
-        <span class="feature-icon">🎬</span>
-        <div class="feature-title">Reels & Video Playback</div>
-        <div class="feature-desc">Watch your saved reels and videos with sound directly inside the app. No redirects.</div>
-      </div>
-      <div class="feature-card reveal">
-        <span class="feature-icon">📁</span>
-        <div class="feature-title">Collections Browser</div>
-        <div class="feature-desc">Your custom Instagram collections appear as organized folders with thumbnails and item counts.</div>
-      </div>
-      <div class="feature-card reveal">
-        <span class="feature-icon">🔍</span>
-        <div class="feature-title">Instant Search</div>
-        <div class="feature-desc">Search across captions, @creators, and #hashtags in real-time across all your posts.</div>
-      </div>
-      <div class="feature-card reveal">
-        <span class="feature-icon">🖼️</span>
-        <div class="feature-title">Quick View Lightbox</div>
-        <div class="feature-desc">Click any post to open a full-screen viewer. Navigate with arrow keys, close with Esc.</div>
-      </div>
-      <div class="feature-card reveal">
-        <span class="feature-icon">🎵</span>
-        <div class="feature-title">Saved Music Vault</div>
-        <div class="feature-desc">Browse your saved tracks with direct links to find them on Spotify and YouTube.</div>
-      </div>
-      <div class="feature-card reveal">
-        <span class="feature-icon">⚡</span>
-        <div class="feature-title">Lightning Fast</div>
-        <div class="feature-desc">Intelligent frame pooling keeps it smooth and snappy even with 10,000+ saved posts.</div>
-      </div>
-    </div>
-  </section>
-</div>
+        <article class="step reveal">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <div class="step-title">Instagram gives you HTML <span class="tag">Looks confusing</span></div>
+            <div class="step-body">
+              You open the export and see text, links and HTML files — not the beautiful saved-post gallery you expected.
+            </div>
+          </div>
+        </article>
 
-<section class="privacy-strip">
-  <p class="section-label reveal">Privacy first</p>
-  <h2 class="reveal">Your data stays on your computer.<br>Completely.</h2>
-  <p class="section-sub reveal" style="margin: 0 auto 0; max-width: 520px;">
-    No account needed. No password. No cloud. Everything runs locally — the only outbound connection is to Instagram's own public embed CDN to display your post previews.
-  </p>
-  <div class="privacy-pills">
-    <div class="privacy-pill reveal"><div class="dot"></div> No login required</div>
-    <div class="privacy-pill reveal"><div class="dot"></div> Zero cloud uploads</div>
-    <div class="privacy-pill reveal"><div class="dot"></div> No tracking or analytics</div>
-    <div class="privacy-pill reveal"><div class="dot"></div> 100% open source</div>
-    <div class="privacy-pill reveal"><div class="dot"></div> Runs on localhost only</div>
-  </div>
-</section>
+        <article class="step reveal">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-title">This app turns it into a library <span class="tag">That's the point</span></div>
+            <div class="step-body">
+              Put the app with your exported <strong>saved</strong> folder and open it.
+              Your saves become a visual, searchable gallery.
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-<div class="cta-section">
-  <p class="section-label reveal">Get started</p>
-  <h2 class="reveal">Ready to take your saved posts<br>with you?</h2>
-  <p class="reveal">Free, forever. No signup. No nonsense. Just download and run.</p>
-  <div class="hero-actions reveal">
-    <a href="https://github.com/sthakur369/instagram-saved-library" target="_blank" rel="noopener" class="btn-primary">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
-      Download Free on GitHub
-    </a>
-  </div>
-</div>
+    <!-- 3. Minimal, high-signal benefits. -->
+    <section class="features-section reveal">
+      <div class="section-label">What you get</div>
+      <h2>Your saved posts, the way you wanted them.</h2>
 
-<footer>
-  <span>© 2025 Instagram Saved Library — MIT License</span>
-  <span>
-    <a href="https://github.com/sthakur369/instagram-saved-library" target="_blank" rel="noopener">GitHub</a>
-    &nbsp;·&nbsp;
-    <a href="https://github.com/sthakur369/instagram-saved-library/issues" target="_blank" rel="noopener">Report an Issue</a>
-  </span>
-</footer>
+      <div class="features-grid">
+        <article class="feature-card reveal">
+          <div class="feature-icon">▦</div>
+          <div class="feature-title">See your saves</div>
+          <div class="feature-desc">A visual gallery instead of a pile of HTML files.</div>
+        </article>
 
+        <article class="feature-card reveal">
+          <div class="feature-icon">⌕</div>
+          <div class="feature-title">Search your saves</div>
+          <div class="feature-desc">Find posts by caption, creator or hashtag.</div>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-icon">▤</div>
+          <div class="feature-title">Keep your collections</div>
+          <div class="feature-desc">Browse the collections you built on Instagram.</div>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-icon">▶</div>
+          <div class="feature-title">Revisit Reels</div>
+          <div class="feature-desc">Open saved Reels and posts from your library.</div>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-icon">⌂</div>
+          <div class="feature-title">Keep it on your computer</div>
+          <div class="feature-desc">Your archive stays local. No account or cloud storage.</div>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-icon">∞</div>
+          <div class="feature-title">Free & open source</div>
+          <div class="feature-desc">No subscription. No lock-in. Just your library.</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. Setup: one recommended path + one no-install fallback. -->
+    <section class="beginner-guide reveal" id="start">
+      <div class="section-label">Choose how you want to use it</div>
+      <h2>Set it up once.<br>Then just open it.</h2>
+      <p class="section-sub">You don't need to understand Python or coding. Choose the option that feels right for you.</p>
+
+      <div class="setup-options">
+        <article class="setup-option setup-recommended reveal">
+          <div class="setup-badge">Recommended</div>
+          <div class="setup-option-icon">⚡</div>
+          <div class="simple-step-kicker">One-time setup</div>
+          <h3>Install Python once</h3>
+          <p class="setup-lead">After the one-time setup, open your saved library whenever you want by simply double-clicking <code>run.bat</code>.</p>
+          <div class="setup-list">
+            <div><span>1</span><p><strong>Download Python</strong> from the official Python website.</p></div>
+            <div><span>2</span><p><strong>Install it</strong> and check <strong>“Add Python to PATH”</strong> when shown.</p></div>
+            <div><span>3</span><p><strong>Put the app inside Instagram's <code>saved</code> folder.</strong></p></div>
+            <div><span>4</span><p><strong>Double-click <code>run.bat</code>.</strong> Your library opens in your browser.</p></div>
+          </div>
+          <a class="setup-link" href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer">Download Python from the official website ↗</a>
+          <div class="simple-step-tip"><strong>Only once:</strong> You do not reinstall Python every time. After setup, opening your library is just a double-click.</div>
+        </article>
+
+        <article class="setup-option setup-browser reveal">
+          <div class="setup-option-icon">↗</div>
+          <div class="simple-step-kicker">No Python required</div>
+          <h3>Use it directly in your browser</h3>
+          <p class="setup-lead">Open <code>public/index.html</code> and select or drag &amp; drop your Instagram HTML export files.</p>
+          <div class="setup-list">
+            <div><span>1</span><p>Open <code>public/index.html</code> in your browser.</p></div>
+            <div><span>2</span><p>Select or drag your <code>saved_posts.html</code>, <code>saved_collections.html</code> and optional music HTML file.</p></div>
+            <div><span>3</span><p>Your library loads directly in the browser.</p></div>
+          </div>
+          <div class="browser-limit"><strong>One trade-off:</strong> you'll need to select your export files again whenever you use the browser-only method.</div>
+          <div class="simple-step-tip"><strong>Good for:</strong> trying the app immediately or using a computer where you don't want to install Python.</div>
+        </article>
+      </div>
+
+      <div class="setup-flow">
+        <div><b>Instagram export</b><span>→</span></div>
+        <div><b>Put app in <code>saved</code></b><span>→</span></div>
+        <div><b>Open your library</b></div>
+      </div>
+
+      <details class="setup-details">
+        <summary>New to this? Show me exactly where everything goes</summary>
+        <div class="setup-details-body">
+          <h4>1. Find Instagram's <code>saved</code> folder</h4>
+          <p>After downloading and unzipping your Instagram data, open the folders until you find <code>saved</code>. You should see files similar to:</p>
+          <pre>saved/
+├── saved_posts.html
+├── saved_collections.html
+└── saved_music.html</pre>
+
+          <h4>2. Put the app inside it</h4>
+          <p>On GitHub, click <strong>Code → Download ZIP</strong>, unzip it, and move the app folder into the same <code>saved</code> folder:</p>
+          <pre>saved/
+├── saved_posts.html
+├── saved_collections.html
+├── saved_music.html
+└── instagram-saved-library/
+    ├── run.bat
+    ├── app.py
+    └── public/</pre>
+
+          <h4>3. Windows: start the app</h4>
+          <p>With Python installed, double-click <code>run.bat</code>. A browser window opens with your library. You do not need to type commands or know how to program.</p>
+
+          <h4>4. Where do I get Python?</h4>
+          <p>Use the official Python website. During installation, if the installer shows <strong>“Add Python to PATH”</strong>, make sure it is checked before installing.</p>
+          <a class="setup-link" href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer">Official Python download ↗</a>
+
+          <h4>5. Don't want Python?</h4>
+          <p>Use the browser-only method above. It works without Python, but you will select your exported HTML files each time.</p>
+        </div>
+      </details>
+    </section>
+
+    <!-- 5. Privacy: one glance, not a wall of text. -->
+    <section class="privacy-strip reveal">
+      <div class="section-label">Your data</div>
+      <h2>Your Instagram export stays yours.</h2>
+      <div class="privacy-pills">
+        <span class="privacy-pill reveal"><span class="dot"></span>No Instagram password</span>
+        <span class="privacy-pill reveal"><span class="dot"></span>No cloud upload</span>
+        <span class="privacy-pill reveal"><span class="dot"></span>No tracking</span>
+        <span class="privacy-pill reveal"><span class="dot"></span>Runs locally</span>
+        <span class="privacy-pill reveal"><span class="dot"></span>Open source</span>
+      </div>
+    </section>
+
+    <!-- 6. Final conversion. -->
+    <section class="search-faq reveal">
+      <div class="section-label">Common questions</div>
+      <h2>Looking for this?</h2>
+      <div class="faq-grid">
+        <article class="faq-item reveal">
+          <h3>How do I save my Instagram posts before deleting my account?</h3>
+          <p>Request your Instagram data export, include Saved items, then open the export with Instagram Saved Library.</p>
+        </article>
+        <article class="faq-item reveal">
+          <h3>How do I view Instagram saved posts from an HTML export?</h3>
+          <p>This app turns the exported HTML saved-post data into a visual, searchable library instead of plain files.</p>
+        </article>
+        <article class="faq-item reveal">
+          <h3>Can I keep my saved Instagram Reels after deleting Instagram?</h3>
+          <p>You can keep the exported saved links and library on your computer so you can revisit them outside Instagram.</p>
+        </article>
+        <article class="faq-item reveal">
+          <h3>Do I need to upload my Instagram data?</h3>
+          <p>No. The app is designed to run locally with your exported files. No Instagram login is required.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta-section reveal">
+      <div class="section-label">Before you delete Instagram</div>
+      <h2>Take your saves with you.</h2>
+      <p>Download your Instagram data. Put the app beside it. Open your library. That's it.</p>
+      <a class="btn-primary" href="https://github.com/sthakur369/instagram-saved-library" target="_blank" rel="noopener">
+        Get the free app
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 Instagram Saved Library · MIT License</span>
+    <span>
+      <a href="https://github.com/sthakur369/instagram-saved-library" target="_blank" rel="noopener">GitHub</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/sthakur369/instagram-saved-library/issues" target="_blank" rel="noopener">Report an issue</a>
+    </span>
+  </footer>
 <script>
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver(entries => {
@@ -651,6 +940,5 @@ saved/<br>
     Array.from(grid.children).forEach((child, i) => { child.style.transitionDelay = `${i * 60}ms`; });
   });
 </script>
-
 </body>
 </html>
