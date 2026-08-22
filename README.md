@@ -14,7 +14,10 @@
 
 ---
 
-![App Screenshot](screenshots/demo.png)
+![App Screenshot](public/screenshots/1.png)
+
+---
+
 
 ## Why does this exist?
 
