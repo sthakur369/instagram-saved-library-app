@@ -296,7 +296,7 @@ Everything runs locally on your machine.
 - 💻 Your exported files stay on your computer
 - 🌐 Instagram's public embed/CDN may be contacted when the app displays post previews
 
-**Important:** the saved posts themselves belong to their original creators. This project helps you organize your own exported saved-content data; it does not grant rights to redistribute third-party content.
+ > **Important: The saved posts themselves belong to their original creators. This project helps you organize your own exported saved-content data; it does not grant rights to redistribute third-party content.**
 
 ---
 
