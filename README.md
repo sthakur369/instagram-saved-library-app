@@ -8,11 +8,11 @@
 
 [![Website](https://img.shields.io/badge/Website-Visit%20Site-8a6f5a.svg)](https://sthakur369.github.io/instagram-saved-library-site/)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
-[![Privacy: Local & Offline](https://img.shields.io/badge/Privacy-Local%20%26%20Offline-purple.svg)](#privacy)
+[![Privacy: Local Processing](https://img.shields.io/badge/Privacy-Local%20Processing-purple.svg)](#privacy)
 [![Platform: Windows · Mac · Linux](https://img.shields.io/badge/Platform-Windows%20%7C%20Mac%20%7C%20Linux-orange.svg)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-**Your Instagram Saved folder is not a good archive. This turns it into one.**
+**Your Instagram `saved` folder is not a usable library. This turns it into one.**
 
 </div>
 
@@ -34,9 +34,9 @@ Where is the visual gallery?
 Where are your collections?  
 How do you search thousands of saves?
 
-**Instagram Saved Library is the missing step between the Instagram export and a usable archive.**
+**Instagram Saved Library is the missing step between the Instagram export and a usable library.**
 
-It reads your exported saved data and turns it into a visual library you can browse, search and revisit on your computer.
+It reads the exported saved data and turns it into a visual library you can browse, search and revisit on your computer.
 
 > **Export from Instagram → Open with this app → Browse your saved library.**
 
@@ -44,10 +44,10 @@ It reads your exported saved data and turns it into a visual library you can bro
 
 ## What you get
 
-- 🎬 **Saved Reels & videos** — open saved Reels and video posts from your library
+- 🎬 **Saved Reels & videos** — open saved Reel and video-post links from your library
 - 🖼️ **Visual saved-post gallery** — see your saved content instead of browsing raw HTML
 - ⚡ **Large libraries** — designed to handle 10,000+ saved posts
-- 🔒 **Local & private** — your exported data stays on your computer
+- 🔒 **Local & private** — your exported files stay on your computer
 
 ---
 
@@ -63,7 +63,7 @@ You don't need to know:
 - databases
 - command-line tools
 
-The technical setup is optional for the people who want the easiest repeat use.
+The technical setup is only needed for the recommended one-click experience.
 
 ## Who is this for?
 
@@ -87,11 +87,11 @@ Keep a local library you can browse without logging into Instagram.
 
 ## How to use it
 
-You only need to do this once to get your Instagram export ready.
+First, get your **Instagram data export** ready. Then choose how you want to use the app.
 
 ### 1. Get your Instagram data
 
-Request your Instagram information and include your **Saved items**.
+Request your Instagram data export and include your **Saved items**.
 
 On Instagram:
 
@@ -131,9 +131,9 @@ Unzip the downloaded app.
 
 You do **not** need a GitHub account to download it.
 
-### 4. Put the app beside your Instagram export
+### 4. Put the app inside your Instagram export's `saved` folder
 
-Move the extracted app folder into Instagram's `saved` folder:
+Move the extracted app folder into the `saved` folder:
 
 ```text
 saved/
@@ -152,13 +152,17 @@ That's the main setup.
 
 ---
 
-## Two ways to open your library
+## Choose how you want to use it
 
-### ⭐ Recommended: install Python once
+You don't need to understand Python or coding. Choose the option that feels right for you.
+
+### ⭐ Recommended: One-time setup
+
+#### Install Python once
 
 If you're going to use your library regularly, this is the easiest option.
 
-You install Python **one time**. After that, you simply double-click:
+After the one-time setup, open your saved library whenever you want by simply double-clicking:
 
 ```text
 run.bat
@@ -181,9 +185,9 @@ After Python is installed, double-click `run.bat`.
 
 **You do not need to install Python again every time.**
 
-### No Python? That's okay.
+### No Python required
 
-You can also use the app directly in your browser.
+#### Use it directly in your browser
 
 Open:
 
@@ -191,7 +195,7 @@ Open:
 public/index.html
 ```
 
-Then select or drag & drop your Instagram HTML files:
+Then select or drag & drop your Instagram HTML export files:
 
 ```text
 saved_posts.html
@@ -201,7 +205,7 @@ saved_music.html
 
 The library will load directly in your browser.
 
-**The trade-off:** you'll need to select the files again whenever you use browser mode.
+**Good to know:** you'll need to select your export files again whenever you use the browser-only method.
 
 So, in simple terms:
 
@@ -224,7 +228,7 @@ It reads the saved data you already downloaded from Instagram and presents it as
 ```text
 Instagram data export
         ↓
-   saved/ folder
+    saved/ folder
         ↓
 Instagram Saved Library
         ↓
@@ -290,13 +294,13 @@ No. You can download the project using **Code → Download ZIP** without creatin
 Everything runs locally on your machine.
 
 - 🔒 No Instagram password
-- ☁️ No cloud archive
-- 🚫 No account required
+- ☁️ No cloud upload
+- 🚫 No Instagram login required
 - 🚫 No tracking
 - 💻 Your exported files stay on your computer
 - 🌐 Instagram's public embed/CDN may be contacted when the app displays post previews
 
- > **Important: The saved posts themselves belong to their original creators. This project helps you organize your own exported saved-content data; it does not grant rights to redistribute third-party content.**
+> **Important: The saved posts themselves belong to their original creators. This project helps you organize your own exported saved-content data; it does not grant rights to redistribute third-party content.**
 
 ---
 
