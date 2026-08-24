@@ -46,11 +46,7 @@ It reads your exported saved data and turns it into a visual library you can bro
 
 - 🎬 **Saved Reels & videos** — open saved Reels and video posts from your library
 - 🖼️ **Visual saved-post gallery** — see your saved content instead of browsing raw HTML
-- 🔍 **Search Instagram saves** — search captions, `@creators`, and `#hashtags`
-- 📁 **Saved collections** — browse the collections you created on Instagram
-- 🎵 **Saved music** — see saved music with Spotify and YouTube search links
 - ⚡ **Large libraries** — designed to handle 10,000+ saved posts
-- 🔎 **Quick View** — open a focused view and navigate with `←` `→` `Esc`
 - 🔒 **Local & private** — your exported data stays on your computer
 
 ---
