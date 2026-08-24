@@ -145,9 +145,11 @@ saved/
 ├── saved_collections.html
 ├── saved_music.html
 └── instagram-saved-library/
-    ├── run.bat
-    ├── app.py
-    └── public/
+      ├── app.py
+      ├── run.bat
+      ├── config.env.example
+      └── public/
+          └── ...
 ```
 
 That's the main setup.
